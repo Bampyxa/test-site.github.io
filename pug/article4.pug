@@ -1,0 +1,31 @@
+extends index.pug
+block style
+    -var stylink = '../'    
+        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+block title
+    -var links = ['images/latex2_img/test2.pdf', 'images/latex2_img/test2.tex', 'article2.html']
+    -var art_content = ['Презентации LATEX', '12-04-2021 08:45', 'latex']
+    title= art_content[0]
+block content
+    .article
+        h2= art_content[0]
+        .info
+            span.date= art_content[1]
+            span.tag= art_content[2]
+        .text
+            p Издательская система LATEX, славится не только грамотным составлением научных статей с многочисленными формулами. Но так же, с её помощью можно быстро и профессионально составить презентацию, обладающую всеми преимуществами LATEXа: простота, изящность, "заточенность под науку". Можно конечно использовать 
+                i Power Point, Impress
+                |  или другие, не менее хорошие программы. Но ведь красочные, анимированные, содержащие аудио и видео, презентации, без проблем можно сделать и здесь, достаточно подключить нужные пакеты. Хотя здесь это особо то и не нужно.
+            p Соответственно самих пакетов для создания презентаций в LATEXе существует достаточно много. Это 
+                b Beamer, Prosper, PPower4, PowerDot, PdfScreen, PdfSlide
+                |  и многие др. Самый известный из них - 
+                i Beamer
+                |  , именно про него я и буду говорить.
+            hr
+            p Чтобы скачать или просмотреть в браузере pdf-презентацию, жмите 
+                a(href=links[0]) ссылку
+            p Чтобы скачать и опробовать у себя на компе tex-файл, жмите 
+                a(href=links[1]) ссылку
+            hr
+            p
+                a(href=links[2]) ◀ предыдущий материал о LATEX-е)

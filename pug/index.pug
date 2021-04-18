@@ -1,0 +1,35 @@
+include index.inc.pug
+doctype html
+html(lang='ru')
+    head
+        block title
+            title BlogAP | Главная страница
+        meta(charset='utf=8')
+        block style
+            -var stylink = ''
+                link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+    body
+        .header
+            h1
+                a(href=main_page) BlogAP
+        .container.clearfix
+            .aside
+                h3 Статьи сайта
+                ul
+                    each item in arts
+                        li
+                            //- здесь вывод перем-х двумя способ. специально
+                            a(href=item.link) #{item.title}
+            .content
+                block content
+                    each item in arts
+                        .article
+                            h2
+                                a(href=item.link) #{item.title}
+                            .info
+                                span.date= item.date
+                                span.tag= item.tag
+                            .text
+                                p= item.description
+        .footer
+            p This is my blog. 2021.

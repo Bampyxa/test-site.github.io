@@ -1,0 +1,40 @@
+extends index.pug
+block style
+    -var stylink = '../'    
+        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+block title
+    -var links = ['files/latex3_img/test3.pdf', 'files/latex3_img/test3.tex', 'article4.html']
+    -var art_content = ['Графики и рисунки в LATEX', '11-04-2021 10:15', 'latex']
+    title= art_content[0]
+block content
+    .article
+        h2= art_content[0]
+        .info
+            span.date= art_content[1]
+            span.tag= art_content[2]
+        .text
+            p Для создания  в системе LaTeX рисунков, графиков, схем и тому подобного контента применяется один из известных пакетов - 
+                b PGF
+                |  и его расширение 
+                i TikZ.
+                |  Строго говоря этот пакет известен не только в LaTeX-е, но и может быть подключен и к другим программам 
+                i MATLAB, Geogebra
+                |  и др.
+            p Преимущество пакета 
+                b pgf
+                |  (что означает 
+                i portable graphics format
+                |  — переносимый графический формат) в том, что не надо таскать в папке сопутствующие картинки, нужного размера и качества(конечно кроме фотографий), все нужные изображения будут находится в .tex файле в виде кода. Так же качество при отображении на экранах любых устройств будет всегда высоким.
+            p В Windows если у вас установлена полная версия LaTeX(развёрнута из 
+                i MikeTeX
+                |  или 
+                i LiveTeX
+                | ) TIKZ и PGF будут идти в комплекте.
+            hr
+            p Смотреть .pdf документ - 
+                a(href=links[0]) Ссылка
+            p Исходный .tex файл - 
+                a(href=links[1]) Ссылка
+            hr
+            p
+                a(href=links[2]) ◀ Предыдущий материал о LATEX-е
