@@ -1,0 +1,80 @@
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+body {
+  background-color: #ffff91;
+  font-size: 16px;
+  font-family: Arial Verdana Ubuntu;
+}
+body a {
+  text-decoration: none;
+}
+.header {
+  background-color: #ffff91;
+  padding: 20px;
+}
+.container .aside {
+  float: left;
+  width: 300px;
+}
+.container .aside h3 {
+  padding: 10px;
+  background-color: #ed5c5c;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+}
+.container .aside ul {
+  padding: 0;
+  list-style: none;
+  width: 300px;
+}
+.container .aside ul li {
+  margin: 5px;
+  border-bottom: 1px solid #000;
+}
+.container .aside ul li a {
+  padding: 5px;
+}
+.container .aside ul li a:hover {
+  font-weight: bold;
+}
+.container .content {
+  margin-left: 320px;
+}
+.container .content .article {
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.container .content .article h2 {
+  margin-top: 0;
+  padding: 10px;
+  background-color: #ed5c5c;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+.container .content .article h2 a {
+  color: #333;
+}
+.container .content .article h2 a:hover {
+  color: #000;
+}
+.container .content .article .info {
+  padding: 10px;
+}
+.container .content .article .info span {
+  padding-right: 10px;
+  font-style: italic;
+}
+.container .content .article .text {
+  padding: 10px;
+}
+.container .content .article .text p {
+  padding: 10px 0;
+}
+.container .footer p {
+  font-size: 14px;
+  text-align: center;
+}

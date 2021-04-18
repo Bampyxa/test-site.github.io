@@ -1,0 +1,70 @@
+primary-color = #ffff91
+secondary-color = #ed5c5c
+dark = #000
+aside_width = 300px
+
+.clearfix:after
+    content ''
+    display table
+    clear both
+
+body
+    background-color primary-color
+    font-size 16px
+    font-family Arial Verdana Ubuntu
+    a
+        text-decoration none
+
+.header
+    background-color primary-color
+    padding 20px
+
+.container
+    .aside
+        float left
+        width aside_width
+        h3
+            padding 10px
+            background-color secondary-color
+            margin 0
+            border-radius 10px 10px 0 0
+        ul
+            padding 0
+            list-style none
+            width aside_width
+            li
+                margin 5px
+                border-bottom 1px solid dark
+                a
+                    padding 5px
+                a:hover
+                    font-weight bold
+    .content
+        margin-left aside_width + 20px
+        .article
+            border 1px solid dark
+            border-radius 10px
+            margin-bottom 20px
+            h2
+                margin-top 0
+                padding 10px
+                background-color secondary-color
+                text-align center
+                border-radius 10px 10px 0 0
+                a
+                    color lighten(dark, 20%)
+                a:hover
+                    color dark
+            .info
+                padding 10px
+                span
+                    padding-right 10px
+                    font-style italic
+            .text
+                padding 10px
+                p
+                    padding 10px 0
+    .footer
+        p
+            font-size 14px
+            text-align center

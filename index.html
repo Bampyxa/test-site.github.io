@@ -1,47 +1,73 @@
 <!DOCTYPE html>
-<html lang=ru-RU>
+<html lang="ru">
   <head>
-    <title>Мой сайт</title>
-    <meta charset="utf-8">
-    <link href="my-style.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Play"" rel="stylesheet" type="text/css">
+    <title>BlogAP | Главная страница</title>
+    <meta charset="utf=8">
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <h1>Моя страница</h1>
-    <img src="cloud.png" alt="облачко" width="200" height="150">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consequuntur at quisquam hic fuga officiis cupiditate reprehenderit vel praesentium quia. Iste est sequi, omnis animi tempore optio provident dolores placeat!</p>
-    <h3>Меню сайта</h3>
-    <ul type="square">
-      <li><a href="" >Главная</a></li>
-      <li><a href="" >Картинки</a></li>
-      <li><a href="" >Проекты</a></li>
-      <li><a href="" >Соц. сети</a></li>
-    </ul>
-    <h3>Ссылки</h3>
-    <p>Хотите написать мне <a href="mailto:ktot@mail.ru">письмо</a> на мой адрес?
-    Хотите написать ещё <a href="mailto:">письмо</a> кому-то?
-    <a href="file.pdf" download="file.pdf">file.pdf</a> скачать файл pdf 8Мб</p>
-    <dl>
-      <dt>termin</dt>
-      <dd>description</dd>
-      <dt>termin</dt>
-      <dd>description</dd>
-    </dl>
-    <blockuote cite="other_site.com/htgr"><p>Конфуций однажды сказал:</p><p>Если у тя чё то нет, то и хуй с им.</p></blockuote>
-    <p>Как сказал Генеша: <q>ышс пргук врорка</q></p>
-    <p><abbr title="Союз Советских Социалистических Республик">СССР</abbr> - лучшая страна на свете.</p>
-    <address>
-      <p>Сайт написан мной - Таким-то Кто-том Такойтовичем</p>
-    </address>
-    <p>C<sub>2</sub>H<sub>5</sub>OH, x<sup>2</sup>+y<sup>2</sup>, 5<sup>0</sup> ниже 0</p>
-    <p>В JavaScript например, переменная <var>para</var>. Объявляется она так: <code>var para = ...</code></p>
-    <pre><code>var para = document.querySelector('p');
-
-    para.onclick = function() {
-        alert('Owww, stop poking me!');
-    }</code></pre>
-    <time datetime="2019-05-01">1-е мая 2019 года(праздник)</time>
-    <button>Изменить пользователя</button>
-    <script src="my-script.js"></script>
+    <div class="header">
+      <h1><a href="index.html">BlogAP</a></h1>
+    </div>
+    <div class="container clearfix">
+      <div class="aside">
+        <h3>Статьи сайта</h3>
+        <ul>
+          <li><a href="html/article1.html">MP3Gain, как им пользоваться</a></li>
+          <li><a href="html/article2.html">LATEX документы</a></li>
+          <li><a href="html/article3.html">Редактор Doom - Eureka</a></li>
+          <li><a href="html/article4.html">Презентации LATEX</a></li>
+          <li><a href="html/article5.html">Редактор Doom - Eureka, часть 2</a></li>
+          <li><a href="html/article6.html">Графики и рисунки в LATEX</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="article">
+          <h2><a href="html/article1.html">MP3Gain, как им пользоваться</a></h2>
+          <div class="info"><span class="date">11-04-2021 10:15</span><span class="tag">mp3gain</span></div>
+          <div class="text">
+            <p>Давно пользуюсь такой прогой, как MP3Gain. Для чего она нужна? В принципе, можно выделить два направления в которых она используется.</p>
+          </div>
+        </div>
+        <div class="article">
+          <h2><a href="html/article2.html">LATEX документы</a></h2>
+          <div class="info"><span class="date">12-04-2021 08:45</span><span class="tag">latex</span></div>
+          <div class="text">
+            <p>Значит что такое латех. Пойдем издалека. Все знают такие проги для созд. документов как Microsoft office, его бесплатные аналоги навроде Open office и всякие другие. На крайняк - блокнот. То есть эти проги создают файлы с расширением .txt, .doc, .odt и др. И поэтому вполне реально накалякать какой-нить текст и худо-бедно его оформить. Ну отступы у абзацев,  поля, таблицу попытаться встроить , картинку красивую вставить, чтоб не было так серо.</p>
+          </div>
+        </div>
+        <div class="article">
+          <h2><a href="html/article3.html">Редактор Doom - Eureka</a></h2>
+          <div class="info"><span class="date">11-04-2021 10:15</span><span class="tag">doom</span></div>
+          <div class="text">
+            <p>Начну с предисловия. Что же такое Doom. Это ум, честь и совесть нашей с вами эпохи. Подумать только - 1993-й год, когда вышел первый эпизод. Целых 22 года прошло с тех славных пор. И что же мы видим, разве он сдулся, потух или забыт всеми и заброшен? А вот нифига подобного, как говориться - &quot;не дождётесь&quot;. Третий doom был во многом спорный, но это была технологичная, качественная и серьёзная игра. И до сих пор, если хотите пощекотать нервишки - то это хороший выбор. И всё таки Doom1-2 и Doom3 - по большому счёту разные.</p>
+          </div>
+        </div>
+        <div class="article">
+          <h2><a href="html/article4.html">Презентации LATEX</a></h2>
+          <div class="info"><span class="date">11-04-2021 10:15</span><span class="tag">latex</span></div>
+          <div class="text">
+            <p>Издательская система LATEX, славится не только грамотным составлением научных статей с многочисленными формулами. Но так же, с её помощью можно быстро и профессионально составить презентацию, обладающую всеми преимуществами LATEXа: простота, изящность, &quot;заточенность под науку&quot;.</p>
+          </div>
+        </div>
+        <div class="article">
+          <h2><a href="html/article5.html">Редактор Doom - Eureka, часть 2</a></h2>
+          <div class="info"><span class="date">11-04-2021 10:15</span><span class="tag">doom</span></div>
+          <div class="text">
+            <p>Итак, продолжаем уроки по замечательной программе-редактору карт Doom - Eureka. В прошлом уроке мы узнали о всех режимах работы проги, так сказать заложили базу. Теперь начнём что-нибудь создавать. Удаляем всё что накуролесили в прошлый урок</p>
+          </div>
+        </div>
+        <div class="article">
+          <h2><a href="html/article6.html">Графики и рисунки в LATEX</a></h2>
+          <div class="info"><span class="date">11-04-2021 10:15</span><span class="tag">latex</span></div>
+          <div class="text">
+            <p>Для создания  в системе LaTeX рисунков, графиков, схем и тому подобного контента применяется один из известных пакетов - PGF и его расширение TikZ. Строго говоря этот пакет известен не только в LaTeX-е, но и может быть подключен и к другим программам MATLAB, Geogebra и др.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>This is my blog. 2021.</p>
+    </div>
   </body>
 </html>
