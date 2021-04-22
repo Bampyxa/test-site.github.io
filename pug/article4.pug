@@ -1,9 +1,9 @@
 extends index.pug
 block style
-    -var stylink = '../'    
-        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+    -var path = '../'    
+        link(rel='stylesheet' type='text/css' href=path+'style.css')
 block title
-    -var links = ['images/latex2_img/test2.pdf', 'images/latex2_img/test2.tex', 'article2.html']
+    -var links = ['images/latex2_img/test2.pdf', 'images/latex2_img/test2.tex', 'article2.html', 'article6.html']
     -var art_content = ['Презентации LATEX', '12-04-2021 08:45', 'latex']
     title= art_content[0]
 block content
@@ -23,9 +23,12 @@ block content
                 |  , именно про него я и буду говорить.
             hr
             p Чтобы скачать или просмотреть в браузере pdf-презентацию, жмите 
-                a(href=links[0]) ссылку
+                a(href=path+links[0]) ссылку
             p Чтобы скачать и опробовать у себя на компе tex-файл, жмите 
-                a(href=links[1]) ссылку
+                a(href=path+links[1]) ссылку
             hr
             p
                 a(href=links[2]) ◀ предыдущий материал о LATEX-е)
+
+            p
+                a(href=links[3]) Следующий материал о LATEX-е ▶

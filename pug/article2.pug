@@ -1,7 +1,7 @@
 extends index.pug
 block style
-    -var stylink = '../'    
-        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+    -var path = '../'    
+        link(rel='stylesheet' type='text/css' href=path+'style.css')
 block title
     -var links = ['images/latex_img/test1.pdf', 'images/latex_img/test1.tex', 'article4.html']
     -var art_content = ['LATEX документы', '12-04-2021 08:45', 'latex']
@@ -21,10 +21,10 @@ block content
             p В общем если хотите немного поближе познакомиться с LATEX-ом, переходите по ссылкам ниже. Там расположен .pdf документ и исходник, в которых собрано самое основное что вы должны знать о такой клёвой программе под названием LATEX.
             hr
             p
-                a(href=links[0]) Ссылка
+                a(href=path+links[0]) Ссылка
                 |  - .pdf документ
             p
-                a(href=links[1]) Ссылка
+                a(href=path+links[1]) Ссылка
                 |  - исходный .tex файл
             hr
             p 

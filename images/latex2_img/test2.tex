@@ -1,0 +1,579 @@
+\documentclass[aspectratio=169,
+% t, c, или b - вертикальное выравнивание на слайдах (верх, центр, низ)
+%handout, - на слайдах всё сразу, без пауз
+%aspectratio=169, - Соотношение сторон(43- по умолч.)
+%draft - черновая, быстрая печать
+]{beamer}
+
+%%%	ОФОРМЛЕНИЕ:
+\usetheme{AnnArbor} % Тема оформления:
+%AnnArbor, Antibes, Bergen, Berkeley, Berlin, Boadilla, CambridgeUS, Copenhagen, Darmstadt, Dresden, Frankfurt, Goettingen, Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Malmoe, Marburg, Montpellier, PaloAlto, Pittsburgh, Rochester, Singapore, Szeged и Warsaw.
+
+%\usecolortheme{beaver} % Цветовая тема:
+%albatross, beetle, crane, dolphin, dove, fly, lily, orchid, rose, seagull, seahorse, sidebartab, structure, whale и wolverine.
+
+%\usefonttheme{serif}%-шрифтовая тема:
+%pro-fessionalfonts, structurebold, structureitalicserif и structuresmallcapsserif.
+
+%\useinnertheme{circles}%-тема для списков, теорем и выделения: inmargin, rectangles, rounded.
+
+%\useoutertheme{infolines}%-тема для заголовков и обрамления: miniframes, shadow, sidebar, smoothbars, smoothtree, split и tree.
+
+%\usetheme{HSE}%своя цвет. схема(дополн-е файлы)
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+
+%% Опред-е своих окруж-й theorem,proof,example, только с русскими названиями
+\newtheorem{rtheorem}{Теорема}
+\newtheorem{rproof}{Доказательство}
+\newtheorem{rexample}{Пример}
+
+%% Работа с графикой
+\usepackage{graphicx} % Для вставки рисунков
+\graphicspath{{images/}{images2/}}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+%\includeonlyframes{ftitle,cont,f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,
+%f14,f15,f16,f17,f18,f19,f20,f21}%для быстроты включает только выбранные фреймы(желательно каждому присваивать label=...)
+%\includeonlyframes{}
+
+
+
+\title{Презентации в Beamer}
+\subtitle{Фреймы и слайды}
+\author{Гога Маленькян}
+\date{\today}
+
+
+
+\begin{document}
+
+\begin{frame}[label= ftitle]%Титульный слайд
+\maketitle
+\end{frame}
+
+
+\section{Оглавление}
+
+\begin{frame}[label=cont,shrink=20] \label{cont}%первый label, чтобы можно было вкл./не вкл. фрейм в презент.(\includeonlyframes{cont}), второй - чтобы созд. где-нибудь ссыл. на данный фрейм(\hyperlink{cont}{ссылка})
+\frametitle{\insertsection}
+\tableofcontents%[pausesections, pausesubsections-чтобы содержание раскрывалось постепенно; sections={<2-3>}]
+\end{frame}
+
+
+
+\section{Презентации в \LaTeX}
+
+\begin{frame}[label=f1]
+\frametitle{\insertsection}
+Для создания презентаций можно использовать не только всем известный PowerPoint от Microsoft, но и такие пакеты \LaTeX а, как \textit{Beamer, PowerDot, Prosper, PPower4, PdfScreen, PdfSlide} и др. \\
+Beamer, можно сказать, самый продвинутый из всех, но при этом, простой.
+\end{frame}
+
+
+
+%\section{Немного о преамбуле}
+\subsection{Класс документа, оформление}
+
+\begin{frame}[fragile, label=f2]%fragile-для окр.verbatim; label-для манипуляций с фреймом.
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+\verb|\documentclass[param]{beamer}| - \\
+\textbf{beamer} - класс документа: презентация \\
+\textbf{param} - необязательные параметры, через запятую: \\
+\textit{t, c,  b} - вертикальное выравнивание на слайдах (верх, центр(default), низ);\\
+\textit{aspectratio=169} - Соотношение сторон-16:9(43- по умолч.4:3); \\ \medskip
+\verb|\usetheme{CambridgeUS}| - \\
+- общая тема оформления, практически у каждого университета своя: \\
+\textit{Bergen, Madrid, Szeged, AnnArbor, Pittsburg, Rochester, Antiles, Montpellier, Berkley.}
+\end{frame}
+
+
+\subsection{Оформление, остальные пакеты}
+
+\begin{frame}[fragile, label=f3]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+Примеры остальных тем, меняющих только некоторые стороны оформления документа:
+\begin{verbatim}
+\usecolortheme{beaver}- цветовая тема
+\usefonttheme{serif}-шрифтовая тема
+\useinnertheme{circles}-тема для списков, теорем и выделения
+\useoutertheme{infolines}-тема для заголовков и обрамления
+\end{verbatim}
+Дальше подключаем те пакеты, которые нам нужны для содержания самой презентации:
+текстовые, математические, графические и др.
+\end{frame}
+
+
+
+\subsection{Фреймы и слайды}
+
+\begin{frame}[label=f4]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+Вся презентация делится на \textbf{фреймы}(аналог страницы в обычном документе), в которых помещается вся полезная информация. \\
+Эти фреймы могут подразделяться на \textbf{слайды}(оверлеи, представления). Т.е. можно не выводить всю информацию на экран целиком, \pause а делать это \pause  маленькими \pause порциями, \pause \only<5>{а можно что-то убирать.}  \pause При этом, виден будет всё тот же фрейм. \pause \\
+Все операции со слайдами делаются внутри окружения \textbf{frame}. Существуют несколько команд для разделения фрейма на слайды. \\
+\label<7>{f4_7} \hyperlink{f16_3}{(Ссылка назад)}
+\end{frame}
+
+
+
+\section{Создание слайдов}
+\subsection{Команда pause}
+
+\begin{frame}[fragile, label=f5]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+\only<1>{Первая команда - \textbf{pause}, ставится она на границе слайдов, для их разделения:}
+\begin{verbatim}
+%\begin{frame}{Создание слайдов}
+Beamer --- это удобный пакет для создания презентаций. \\ \pause 
+Это второй слайд \\ \pause 
+Это наш третий слайд \\ \pause 
+Четвёртый! Паузу можно поставить в любом \pause месте - это пятый.
+%\end{frame}
+\end{verbatim} \pause
+
+Beamer ---  это удобный пакет для создания презентаций. \\ \pause
+Это второй слайд \\ \pause
+Это наш третий слайд \\ \pause
+Четвёртый! Паузу можно поставить в любом \pause месте - это пятый.
+\end{frame}
+
+
+
+\subsection{Постепенный вывод списка(pause)}
+
+\begin{frame}[fragile, label=f6]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+\only<1>{Со списком можно проделать то же самое.}
+\begin{verbatim}
+\begin{itemize}
+\item Пункт списка №1: \pause
+\begin{itemize}
+\item Вложенный пункт а \pause
+\item Вложенный пункт б \pause
+\end{itemize}
+\item Пункт списка №2
+\end{itemize}
+\end{verbatim} \pause
+\begin{itemize}
+\item Пункт списка №1: \pause
+\begin{itemize}
+\item Вложенный пункт а \pause
+\item Вложенный пункт б \pause
+\end{itemize}
+\item Пункт списка №2
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{Команда only}
+
+\begin{frame}[fragile, label=f7]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Существует ещё команда \textbf{only<number-slide>}, которая позволит показать какую-либо информацию, только на определённых слайдах. Например:}
+\begin{verbatim}
+\only<1,3>{Привет, меня зовут Петя.\\}
+\only<2-4>{У меня есть кошка по кличке Нюша.\\}
+\only<3>{Мышка по прозванью Валя.\\}
+\only<4>{А еще собака -- Барбос.}
+\end{verbatim} \pause
+\only<2,4>{Привет, меня зовут Петя.\\}
+\only<3-5>{У меня есть кошка по кличке Нюша.\\}
+\only<4>{Мышка по прозванью Валя.\\}
+\only<5>{А еще собака -- Барбос. \\}
+\only<6>{Обратите внимание, при использовании этой команды(в отличие от остальных), перенос на новую строку, если он нужен - $\backslash\backslash$, ставится вместе с текстом, внутри скобок.}
+\end{frame}
+
+
+
+\subsection{Команда uncover}
+
+\begin{frame}[fragile, label=f8]
+\frametitle{\insertsection}
+%\frametitle{Свое название раздела}
+\framesubtitle{\insertsubsection}
+%\setbeamercovered{dynamic}%динамическая прозрачность
+\only<1>{Следуюшая команда \textbf{uncover}, похожа  на предыдущую, но при этом место под текст или формулу <<резервируется>>.}
+\begin{verbatim}
+\uncover<1->{За лесами, за морями,}\\
+\uncover<3->{За высокими горами.}\\
+\uncover<2->{Не на небе - на земле,}\\
+\uncover<4->{Жил старик в одном селе.}
+\end{verbatim} \pause
+\uncover<2->{За лесами, за морями,}\\
+\uncover<4->{За высокими горами.}\\
+\uncover<3->{Не на небе - на земле,}\\
+\uncover<5->{Жил старик в одном селе. \\
+\label<5>{f8_5} \hyperlink{f16_3}{(Ссылка назад)}}
+\end{frame}
+
+
+
+\subsection{Команды visible/invisible}
+\begin{frame}[fragile, label=f9]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{В принципе, следующие команды - \textbf{visible/invisible}, похожи на uncover, но более наглядны в использовании. Первая занимается отображением на указанных слайдах, вторая наоборот - скрытием на данных слайдах.}
+\begin{verbatim}
+\visible<1-2>{формула 1:}\invisible<1-2>{$2H_2O\to2H_2+O_2$} \\
+\visible<2>{формула 2:}\invisible<1-2>{$\tg\alpha=\sin\alpha/\cos
+\alpha$} \\
+\visible<3>{}
+\end{verbatim} \pause
+\visible<2-3>{формула 1:}\invisible<2-3>{$2H_2O\to2H_2+O_2$} \\
+\visible<3>{формула 2:}\invisible<2-3>{$\tg\alpha=\sin\alpha/\cos\alpha$} \\
+\visible<4>{}
+\end{frame}
+
+
+
+\subsection{Команды alt/temporal}
+\begin{frame}[fragile, label=f10]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Более сложные результаты достигаются с помощью команд  \textbf{alt} и  \textbf{temporal}. Первая позволяет выводить один текст на определенных слайдах и другой на всех остальных, а вторая предлагает целых три варианта: до указанных слайдов, на указанных слайдах и после указанных слайдов.}
+\begin{verbatim}
+\alt<1>{Это первый - \textbf{нужный} слайд}{Это точно не первый
+ слайд}\\
+\temporal<2>{Приготовься!!!}{Здесь во 2-м слайде важная информация}
+{Расслабься:)} \\
+\only<3>{}
+\end{verbatim} \pause
+\alt<2>{Это первый - \textbf{нужный} слайд}{Это точно не первый слайд} \\
+\temporal<3>{Приготовься!!!}{Здесь во 2-м слайде \textbf{важная} информация}{Расслабься:)} \\
+\only<4>{}
+\end{frame}
+
+
+
+\subsection{Окружения для создания слайдов}
+\begin{frame}[fragile, label=11]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Допустим нужно разместить некоторый текст, несколько формул или таблицу. Логичнее было бы объединить их в некоторое окружение. Это можно сделать так как, каждой команде для создания оверлея соответствует аналогичное окружение с названием заканчивающимся на  \textbf{-env: onlyenv, uncoverenv} и др.}
+
+\begin{onlyenv}<2>
+\begin{verbatim}
+\begin{onlyenv}<1>
+$2\times2=4$ \\
+$3\times3=9$ \\
+$4\times4=16$ \\
+$5\times5=25$ \\
+\end{onlyenv}
+\begin{onlyenv}<2>
+\includegraphics[scale=0.1]{pi.jpg}
+\end{onlyenv}
+\end{verbatim}
+\end{onlyenv} \pause
+
+\begin{onlyenv}<3-4>
+$2\times2=4$ \\
+$3\times3=9$ \\
+$4\times4=16$ \\
+$5\times5=25$ \\
+\end{onlyenv}
+\begin{onlyenv}<4>
+\includegraphics[scale=0.1]{pi.jpg}
+\end{onlyenv}
+\end{frame}
+
+
+\section{Общее о презентации}
+\subsection{Другие команды}
+\begin{frame}[fragile, label=f12]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Содержимое фрейма можно не только скрыть/показать. Но и как-то менять например шрифт, цвет и т.д. Практически все команды поддерживают изменения на разных слайдах.}
+\begin{verbatim}
+\textbf<1>{Эта строчка жирная только на 1 слайде. \\}
+\textit<2>{Эта строка курсивная только на 2 слайде. \\}
+\textcolor<3>[RGB]{0,255,0}{Текст зелёный только на 3 слайде.\\}
+В этом тексте \alert<4>{данное} слово выделено красным только
+ на 4 слайде.
+\end{verbatim} \pause
+\textbf<2>{Эта строчка жирная только на 1 слайде. } \\
+\textit<3>{Эта строка курсивная только на 2 слайде. } \\
+\textcolor<4>[RGB]{0,255,0}{Этот текст зелёный только на 3 слайде. } \\
+В этом тексте \alert<5>{данное} слово выделено только на 4 слайде.
+%\box<3,5>{Этот текст в обрамлении только на слайдах 3 и 5.}
+\end{frame}
+
+
+
+\subsection{<<Правильное>> использование оверлеев}
+
+\begin{frame}[fragile, label=f13]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Для удобства можно с помощью команды \textbf{newcommand} сокращать запись и если переход от одного пункта к другому не случайный, а по порядку, то можно вместо цифр использовать $+$. При этом счётчик сам будет увеличиваться на 1, а вы сможете добавлять новые пункты списка, не сбивая нумерацию.}
+\begin{onlyenv}<2>
+\begin{verbatim}
+\newcommand{\green}{\only{\textcolor[RGB]{128,128,0}}}
+\begin{itemize}
+\item \green<+>{Первый пункт}
+\item \green<+>{Полуторный пункт}
+\item \green<+>{Второй пункт}
+\item \green<+>{Третий пункт}
+\end{itemize}
+\end{verbatim}
+\end{onlyenv}
+
+\begin{onlyenv}<3->
+\newcommand{\green}{\only{\textcolor[RGB]{128,128,0}}}
+\begin{itemize}
+\item \green<3>{Первый пункт}
+\item \green<4>{Полуторный пункт}
+\item \green<5>{Второй пункт}
+\item \green<6>{Третий пункт}
+\end{itemize}
+\end{onlyenv}
+\end{frame}
+
+
+
+\subsection{Логические блоки}
+
+\begin{frame}[fragile, label=f14]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{В презентациях можно подразделять текст на некоторые логические блоки, с помощью окружения \textbf{block}. Как они будут выглядеть, зависит от темы.}
+\begin{onlyenv}<2>
+\begin{verbatim}
+\begin{block}{Первый блок}
+Некоторое содержимое данного блока. \\
+Ещё добавим и это предложение.
+\end{block}
+\begin{block}{Второй блок}
+$1+2+3+4+5+\dots+96+97+98+99+100=5050$
+\end{block}
+\begin{block}{Третий блок}
+В данном блоке находится кнопка-ссылка на другой фрейм. \\
+При клике на ней мы перенесёмся туда. \\
+\hyperlink{lab}{\beamerbutton{Кнопка со ссылкой}}
+\end{block}
+\end{verbatim}
+\end{onlyenv}
+
+\begin{onlyenv}<3>
+\begin{block}{Первый блок}%отдел-ся некот. образом от остального содерж.
+Некоторое содержимое данного блока. \\
+Ещё добавим и это предложение.
+\end{block}
+\begin{block}{Второй блок}
+$1+2+3+4+5+\dots+96+97+98+99+100=5050$
+\end{block}
+\begin{block}{Третий блок}
+В данном блоке находится кнопка-ссылка на другой фрейм. \\
+При клике на ней мы перенесёмся туда. \\
+\hyperlink{big_text}{\beamerbutton{Кнопка со ссылкой}}% ведет на 2стр. вперед
+\end{block}
+\end{onlyenv}
+\end{frame}
+
+
+
+\subsection{Теоремы}
+
+\begin{frame}[fragile, label=f15]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\begin{onlyenv}<1>
+Разделять некоторый текст по блокам можно и с помощью окружений \textbf{theorem, proof, example}. Это даже лучше, так как они специально созданы для этого. Но так как их названия не русифицированы, то лучше создать свои окружения в преамбуле: \\
+\begin{verbatim}
+\newtheorem{rtheorem}{Теорема}
+\newtheorem{rproof}{Доказательство}
+\newtheorem{rexample}{Пример}
+\end{verbatim}
+\end{onlyenv}
+
+\begin{onlyenv}<2>
+\begin{verbatim}
+\begin{rtheorem}
+В равностороннем треугольнике $\triangle ABC$ все углы тоже
+ равны. (Пифагор)
+\end{rtheorem}
+\begin{rproof}
+Пифагоровы штаны на все стороны равны.
+\end{rproof}
+\begin{rexample}
+$AB=BC, BC=AC, AB=AC : \angle A=\angle B=\angle C$
+\end{rexample}
+\end{verbatim}
+\end{onlyenv}
+
+\begin{onlyenv}<3>
+\begin{rtheorem}
+В равностороннем треугольнике $\triangle ABC$ все углы тоже равны. (Пифагор)
+\end{rtheorem}
+\begin{rproof}
+Пифагоровы штаны на все стороны равны.
+\end{rproof}
+\begin{rexample}
+$AB=BC, BC=AC, AB=AC : \angle A=\angle B=\angle C$
+\end{rexample}
+\end{onlyenv}
+\end{frame}
+
+
+
+\subsection{Ссылки в презентациях}
+
+\begin{frame}[fragile, label=f16] %\hypertarget<3>{back}{}
+%\hypertarget<№ оверлея>{proof_theor_1}{Смотри здесь}, \hypertarget<5>{backw_slide}{\hyperlink{forw_slide}{Ссылка назад}} - более общий метод указания метки
+\label<3>{f16_3}
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+\only<1>{Ссылки в презентациях как правило перекрёстные. Например перенестись к уже пролистаному фрейму или забежать немного вперёд, а потом в один клик сразу вернуться назад и продолжить презентацию.} \pause
+\begin{onlyenv}<2>
+\begin{verbatim}
+\ begin{frame}[label=метка] -
+ - это метка фрейма - адрес, куда перенесёт нас ссылка.
+\label<№слайда>{метка} -
+ - а эту метка для указания на определённый слайд фрейма
+\hyperlink{theor_1}{Ссылка} -
+ - это сама ссылка где-либо в тексте, в ней указана метка и текст
+ самой ссылки.
+\beamerbutton{Кнопка со ссылкой},\beamergotobutton{значок-стрелочка},
+\beamerskipbutton{двойная стрелочка},\beamerreturnbutton{стрелка влево} - 
+ - вместо слова `Ссылка` может быть такая стилизованная кнопка.
+\label<7>{f4_7} \hyperlink{f16_3}{(Ссылка на 7-й слайд 4 фрейма)},
+\label<3>{f16_3} \hyperlink{f4_7}{(Ссылка назад, на 3-й слайд 16 фрейма)} -
+ - так будут выглядеть две перекрёстные ссылки.
+\end{verbatim}
+\end{onlyenv}
+\only<3>{
+\hyperlink{big_text}{\beamerbutton{Ссылка на следующий фрейм}} \\
+\hyperlink{f8_5}{Ссылка на слайд далеко позади} \\
+\hyperlink{f4_7}{Ссылка на 4-й слайд}
+}
+\end{frame}
+
+
+\subsection{Дополнительные параметры frame}
+\begin{frame}[containsverbatim, fragile, label=f17]
+Каждое окружение frame имеет следующие необязательные опции, \\
+\verb|\ begin{frame}[param]| : \\
+(которые, как вы заметили можно указать и в преамбуле(при указании класса), для всех фреймов)
+\begin{itemize}
+\item containsverbatim — если есть окружение verbatim или команда \verb|\verb| для отображения кода;
+\item label=метка — метка слайда (для команды \verb|\ref| и гиперссылок);
+\item b, c, t — выравнивание (по верхнему краю, по центру(default), по нижнему краю;
+\item plain — слайд без оформления;
+\item shrink=число — ужимает содержимое кадра на «число» процентов;
+\item squeeze — другой способ, уменьшает вертикальные промежутки;
+\item fragile — говорит beamer-у, что внутри кадра размещается «хрупкий» текст (н-р, verbatim)
+\end{itemize}
+\end{frame}
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+
+
+\subsection{Большой текст}
+
+\begin{frame}[shrink=10, fragile, label=f18] \label{big_text}%shrink- ужать текст на 7%(лучше не использовать)
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+Если по какой-то причине текст немного не умещается в слайде(одна-две строки), используйте \\
+\verb|\ begin{frame}[shrink=10]| \\
+И содержимое ужмётся. Но злоупотреблять этим не стоит, лучше сделать два слайда или фрейма. \\ \medskip
+\textsl{Чуден Днепр при тихой погоде, когда вольно и плавно мчит сквозь леса и горы полные воды свои. Ни зашелохнет; ни прогремит. Глядишь, и не знаешь, идет или не идет его величавая ширина, и чудится, будто весь вылит он из стекла, и будто голубая зеркальная дорога, без меры в ширину, без конца в длину, реет и вьется по зеленому миру. Любо тогда и жаркому солнцу оглядеться с вышины и погрузить лучи в холод стеклянных вод и прибережным лесам ярко отсветиться в водах. Зеленокудрые! они толпятся вместе с полевыми цветами к водам и, наклонившись, глядят в них и не наглядятся, и не налюбуются светлым  своим зраком, и усмехаются к нему, и приветствуют его, кивая ветвями. В середину же Днепра они не смеют глянуть: никто, кроме солнца и голубого неба, не глядит в него. Редкая птица долетит до середины Днепра. Пышный! ему нет равной реки в мире. Чуден Днепр и при теплой летней ночи, когда все засыпает --- и человек, и зверь, и птица; а бог один величаво озирает небо и землю и величаво сотрясает ризу.} \\
+\hfill{\textit{Н. В. Гоголь}}
+\end{frame}
+
+
+
+\begin{frame}[fragile, label=f19]{Пошаговое построение графика}%можно написать название и здесь
+\only<1>{Постепенно добавлять можно не только текст, формулы, но и простые рисунки, графики, диаграммы, созданные с помощью графических пакетов, о которых мы поговорим в следующей части.}
+\begin{onlyenv}<2>
+\begin{verbatim}
+\begin{tikzpicture}
+\draw<1->[->, ultra thick] (0,0) --(0,5.2) node[left]{y};
+\draw<2->[->, ultra thick] (0,0)--(5.2,0) node[below]{x};
+\draw<3->[help lines] grid(5,5);
+\draw<4-> (0,0)--(5,4);
+\draw<5-> (0,5)--(5,1);
+\draw<6->[domain=0:2] plot(\x, \x*\x);
+\end{tikzpicture}
+\end{verbatim}
+\end{onlyenv}
+
+\begin{onlyenv}<3->
+\begin{tikzpicture}
+\draw<3->[->, ultra thick] (0,0)--(0,5.2) node[left]{y};
+\draw<4->[->, ultra thick] (0,0)--(5.2,0) node[below]{x};
+\draw<5->[help lines] grid(5,5);
+\draw<6-> (0,0)--(5,4);
+\draw<7-> (0,5)--(5,1);
+\draw<8->[domain=0:2] plot(\x, \x*\x);
+\end{tikzpicture}
+\end{onlyenv}
+\end{frame}
+
+
+\subsection{Манипуляции с фреймами}
+
+\begin{frame}[fragile, label=f20]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+Если у вас в презентации есть несколько фреймов. которые не относятся к теме, не обязательно их удалять или закоментировать все строки знаком - \%. \\
+Достаточно каждому фрейму прописать необязательный параметр - label : \verb|\ begin{frame}[label=frm1]|. \\
+И в преамбуле указать с помощью команды - \verb|\includeonlyframes{frm1,frm2}|, какие из них вы хотите добавить в презентацию, остальные будут игнорироваться. Таким образом всегда можно регулировать содержание.
+\end{frame}
+
+
+
+\section{<<Лекции>>}
+
+\includeonlylecture{lec1,lec2}%показать только лекцию 1(Можно поместить это в преамбулу)
+
+\lecture{Лекция 1}{lec1}
+\subsection{Лекция 1}
+\begin{frame}[fragile, label=f21]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+У lecture-функционала, такое же назначение, он позволяет включать в презентацию только отдельные слайды, но при этом он более объединяющий. \\
+Допустим какие-то фреймы относятся ко всему курсу(титульный лист, оглавление и др.), поэтому размещены в начале файла. А остальные фреймы разделены между тремя лекциями, и идут друг за другом. В начале каждой из них указывается команда - \\
+\verb|\lecture{Лекция №1}{lec1}| - с названием и меткой\\
+При этом в конце фреймов, не относящихся ни к какой лекции задаётся команда - \\
+\verb|\includeonlylecture{lec1,lec2}| - которая показывает какие лекции нужно включить, а какие нет, в презентацию.
+\end{frame}
+
+\lecture{Лекция 2}{lec2}
+\subsection{Лекция 2}
+\begin{frame}[fragile, label=f22]
+\frametitle{\insertsection}
+\framesubtitle{\insertsubsection}
+Ещё раз, чтобы было понятнее. Все frames не внутри какой-нибудь lecture присутствуют всегда. Если нет  команды \verb"includeonlylecture{}", то все лекции тоже присутствуют всегда. Отдельную лекцию можно показать с помощью \verb"includeonlylecture{lec1}". \\
+\begin{verbatim}
+\includeonlylecture{lec1} - будет показана только лекция 1.
+\lecture{Лекция 1}{lec1}
+%\begin{frame}{Фрейм №1 Лекция №1}
+Какое-то содержимое фрейма.
+%\end{frame}
+После него еще несколько фреймов...
+\lecture{Лекция 2}{lec2}
+%\begin{frame}{Фрейм №1 Лекция №2}
+Какое-то содержимое фрейма.
+%\end{frame}
+\end{verbatim}
+\end{frame}
+
+
+
+\end{document}

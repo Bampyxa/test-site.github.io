@@ -1,10 +1,10 @@
 extends index.pug
 block style
-    -var stylink = '../'    
-        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+    -var path = '../'    
+        link(rel='stylesheet' type='text/css' href=path+'style.css')
 block title
     -var images = ['images/eureka_img/1d.gif', 'images/eureka_img/2d.gif', 'images/eureka_img/3d.gif', 'images/eureka_img/4d.gif', 'images/eureka_img/5d.gif', 'images/eureka_img/6d.gif', 'images/eureka_img/7d.gif', 'images/eureka_img/8d.gif', 'images/eureka_img/9d.gif', 'images/eureka_img/10d.gif']
-    -var links = ['http://eureka-editor.sourceforge.net/', '/images/eureka_img/eureka_shortcuts.txt', 'http://www.cockos.com/licecap']
+    -var links = ['http://eureka-editor.sourceforge.net/', 'images/eureka_img/eureka_shortcuts.txt', 'http://www.cockos.com/licecap', 'article5.html']
     -var art_content = ['Редактор Doom - Eureka', '12-04-2021 08:45', 'doom']
     title= art_content[0]
 block content
@@ -78,10 +78,10 @@ block content
                 | ): вправо-влево - осмотреться по сторонам, вверх-вниз - подлететь к потолку-полу.
             p Начнём редактировать, чтобы сделать комнату побольше, переходим в режим точек(v), выделяем мышкой нужную и тащим в нужное место.
             p(class='gif')
-                img(src=images[0] alt='verticles')
+                img(src=path+images[0] alt='verticles')
             p То же самое можно сделать в режиме линий(l).
             p(class='gif')
-                img(src=images[1] alt='linedefs')
+                img(src=path+images[1] alt='linedefs')
             p Создадим рядом вторую комнату с помощью режима секторов(s). Рядом с первым добавляем маленький сектор(
                 b Пробел, удалить - Delete
                 | ), зажимаем 
@@ -90,16 +90,16 @@ block content
                 b СКМ
                 |  и ведём немного в сторону, регулируя размер сектора.
             p(class='gif')
-                img(src=images[2] alt='sectors')
+                img(src=path+images[2] alt='sectors')
             p Созадим проход из одной комнаты в другую. В режиме вершин, добавим точки как показано.
             p(class='gif')
-                img(src=images[3] alt='rooms')
+                img(src=path+images[3] alt='rooms')
             p Перейдём в режим вещей(t), внутри одной из комнат стоит наш герой - зелёный кубик. Зелёным цветом также обозначаются аптечки, броня, красным соответственно враги, а всё остальное - всякими нейтральными цветами. Можно что-нибудь добавить(
                 b Пробел
                 | ). При этом в боковой панели(которую можно откр./закр. кнопкой         b b
                 | ), выбираем что нужно. Расставьте по уровню оружие, монстров полегче, бочки(куда же без них).
             p(class='gif')
-                img(src=images[4] alt='things')
+                img(src=path+images[4] alt='things')
             p Теперь, в 3D-режиме можно пройтись по нашему мини-уровню из 2-х комнат. Не забудьте сохранить его(
                 b Ctrl+s
                 | ). Можно включить гравитацию, чтобы не очень летать. Теперь нужно немного рассказать о рассмотренных режимах.
@@ -113,7 +113,7 @@ block content
                 i Будьте внимательны!
                 | ).
             p(class='gif')
-                img(src=images[5] alt='verticles2')
+                img(src=path+images[5] alt='verticles2')
             p Линию или точнее плоскость с видом сверху(
                 i linedef
                 | ), добавить уже нельзя, можно только переместить готовую, изменить размер(зажать 
@@ -134,13 +134,13 @@ block content
                 b sec
                 |  , принадлежность к сектору.
             p(class='gif')
-                img(src=images[6] alt='verticles2')
+                img(src=path+images[6] alt='verticles2')
             p Последнее важно, линии между соседними секторами, как правило имеют двух "хозяев", одна сторона, принадлежит одному, другая - другому. Это правило надо соблюдать, если по каким-то причинам чтото напутается, в этом окошке напрямую можно задать нужные сектора и исправить ситуацию. Если выделить ту самую линию, между большим и малым сектором, на ПИ мы всё это и увидим. Но почему текстур так много, не одна-две, а четыре? Сейчас всё объясню.
             p Наконец, режим секторов(
                 i sectors
                 | ). Одно из важных требований к сектору - он должен быть замкнутый, какой бы многоугольник вы не постороили со всех сторон он должен быть закрыт, иначе появляются всякие трудноуловимые ошибки. При выделении сектора чёрточки всех линий смотрят внутрь(это может не совпадать с лицевыми сторонами linedef).
             p(class='gif')
-                img(src=images[7] alt='verticles2')
+                img(src=path+images[7] alt='verticles2')
             p Так же у секторов тоже есть текстуры, но только потолка(
                 b ceil
                 | ) и пола(
@@ -155,7 +155,7 @@ block content
                 b headroom
                 | ).
             p(class='gif')
-                img(src=images[8] alt='verticles2')
+                img(src=path+images[8] alt='verticles2')
             p При клике на изображение пола/потолка, открывается боковая панель(БП), где можно выбрать подходящую текстуру или выбрать в выпадающем списке(
                 i Category
                 | ) нужную категорию текстур(адская, городская, и др.), можно воспользоваться удобным поиском(
@@ -171,7 +171,7 @@ block content
                 b upper
                 | ).
             p(class='gif')
-                img(src=images[9] alt='sectors')
+                img(src=path+images[9] alt='sectors')
             p Текстуры для изнаночной стороны можо удалить, для экономии памяти :), двойным кликом выделяем название в окошке и печатаем минус.
             p На этом первый урок можно закончить. Прилагаю в конце .txt-файл с shortcuts(клавиатурными сокращениями), желательно их знать. Потренируйтесь с простенькими уровнями, без лесниц, дверей, лифтов и прочих ништяков. Расставляйте монстров, оружие и декорации.
             hr
@@ -179,8 +179,11 @@ block content
                 a(href=links[0]) Eureka
                 |  - редактор карт Doom.
             p
-                a(href=links[1]) Eureka shortcuts
+                a(href=path+links[1]) Eureka shortcuts
                 |  - клавиатурные сокращения.
             p Статья создана с помощью:
                 a(href=links[2]) LICEcap
                 |  - программы для записи GIF-ок с экрана монитора(227Kb).
+            p
+
+                a(href=links[3]) Следующий материал о Eureka ▶

@@ -1,9 +1,9 @@
 extends index.pug
 block style
-    -var stylink = '../'    
-        link(rel='stylesheet' type='text/css' href=stylink+'style.css')
+    -var path = '../'    
+        link(rel='stylesheet' type='text/css' href=path+'style.css')
 block title
-    -var links = ['files/latex3_img/test3.pdf', 'files/latex3_img/test3.tex', 'article4.html']
+    -var links = ['images/latex3_img/test3.pdf', 'images/latex3_img/test3.tex', 'article4.html']
     -var art_content = ['Графики и рисунки в LATEX', '11-04-2021 10:15', 'latex']
     title= art_content[0]
 block content
@@ -32,9 +32,9 @@ block content
                 | ) TIKZ и PGF будут идти в комплекте.
             hr
             p Смотреть .pdf документ - 
-                a(href=links[0]) Ссылка
+                a(href=path+links[0]) Ссылка
             p Исходный .tex файл - 
-                a(href=links[1]) Ссылка
+                a(href=path+links[1]) Ссылка
             hr
             p
                 a(href=links[2]) ◀ Предыдущий материал о LATEX-е

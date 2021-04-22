@@ -1,0 +1,1357 @@
+\documentclass[a4paper,12pt]{article}%[leqno]-нумерация формул слева
+
+%%% Работа с русским языком
+\usepackage{cmap}		% поиск в PDF
+\usepackage{mathtext} 	% русские буквы в формулах
+\usepackage[T2A]{fontenc}	% кодировка
+\usepackage[utf8]{inputenc}	% кодировка исходного текста(специально для русского языка: cp866 (DOS-кодировка), cp1251 (Windows-кодировка) или кодировка koi8-r)
+\usepackage[english,russian]{babel}	%русификация служебных команд, названия математических ф-й, принятые в рус. традиции, соблюдение традиционного русского написания и др.
+%\usepackage{indentfirst}%красная строка у 1-го и остальных абзацев(для рус.яз.)
+\frenchspacing%тонкая настройка пробелов
+
+%%% Дополнительная работа с математикой
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,amscd} % пакеты AMS
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage[matrix,arrow,curve]{xy} %более сложные коммутатив. диагр.
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+%\usepackage{leqno} % Нумереация формул слева
+
+%% Шрифты
+\usepackage{euscript} % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+% \renewcommand{\epsilon}{\ensuremath{\varepsilon}}%греч.буквы
+% \renewcommand{\phi}{\ensuremath{\varphi}}
+% \renewcommand{\kappa}{\ensuremath{\varkappa}}
+% \renewcommand{\le}{\ensuremath{\leqslant}}%скобки
+% \renewcommand{\leq}{\ensuremath{\leqslant}}
+% \renewcommand{\ge}{\ensuremath{\geqslant}}
+% \renewcommand{\geq}{\ensuremath{\geqslant}}
+% \renewcommand{\emptyset}{\varnothing}%ничего
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx} % Для вставки рисунков
+\graphicspath{{images/}{images2/}} % папки с картинками
+\setlength\fboxsep{3pt}% Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt}% Толщина линий рамки \fbox{}
+\usepackage{wrapfig}% Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+\usepackage{array,tabularx,tabulary,booktabs}% Дополнительная работа с таблицами
+\usepackage{longtable}% Длинные таблицы
+\usepackage{multirow} % Слияние строк в таблице
+\usepackage{hhline}% настройка разделителей ячеек
+
+%%% Теоремы
+\theoremstyle{plain}%Это стиль по умолчанию, его можно не переопределять.
+\newtheorem{theorem}{Теорема}[section]%подчинение счётч. разделов - 1.1
+\newtheorem{proposition}[theorem]{Утверждение}%нумеруются вместе с теоремами - 1.2
+ 
+\theoremstyle{definition}%Стиль "Определение"
+\newtheorem{corollary}{Следствие}[theorem]%1.1.1
+\newtheorem{problem}{Задача}[section]
+ 
+\theoremstyle{remark}%Стиль "Примечание"
+\newtheorem*{nonum}{Решение}
+
+%%% Программирование
+\usepackage{etoolbox} % логические операторы(true-false)
+
+%%% Страница
+%\usepackage{extsizes} % Возможность сделать 14-й шрифт
+\usepackage{geometry} % Простой способ задавать поля
+	\geometry{top=25mm}
+	\geometry{bottom=35mm}
+	\geometry{left=35mm}
+	\geometry{right=20mm}
+ %
+\usepackage{fancyhdr} % Колонтитулы
+ 	%\pagestyle{fancy}
+ 	%\renewcommand{\headrulewidth}{1mm}  % Толщина линейки, отчеркивающей верхний колонтитул
+ 	% \lfoot{Нижний левый}
+ 	% \rfoot{Нижний правый}
+ 	% \rhead{Верхний правый}
+ 	% \chead{Верхний в центре}
+ 	% \lhead{Верхний левый \thepage из }
+ 	% \cfoot{Нижний в центре} % По умолчанию здесь номер страницы
+
+\usepackage{setspace} % Интерлиньяж(междустрочный инт.)
+%\onehalfspacing % Интерлиньяж 1.5
+%\doublespacing % Интерлиньяж 2
+%\singlespacing % Интерлиньяж 1
+
+\usepackage{lastpage} % Узнать, сколько всего страниц в документе.
+
+\usepackage{soulutf8} % Модификаторы начертания
+
+%%Ссылки
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames,svgnames,table,rgb]{xcolor}
+\hypersetup{			% Гиперссылки
+    unicode=true,          % русские буквы в раздела PDF
+    pdftitle={Заголовок},  % Заголовок
+    pdfauthor={Автор},     % Автор
+    pdfsubject={Тема},     % Тема
+    pdfcreator={Создатель},% Создатель
+    pdfproducer={Производитель},% Производитель
+    pdfkeywords={keyword1} {key2} {key3},% Ключевые слова
+    colorlinks=true,       % false: ссылки в рамках; true: цветные ссылки
+    linkcolor=red,         % внутренние ссылки
+    citecolor=green,       % на библиографию
+    filecolor=magenta,     % на файлы
+    urlcolor=cyan          % на URL
+}
+
+%\renewcommand{\familydefault}{\sfdefault} % Начертание шрифта(без засечек)
+
+%%Работа с простой библиографией(не BIBLATEX)
+\usepackage{cite}
+\usepackage{csquotes}% Еще инструменты для ссылок(в т.ч. для BIBLATEX)
+
+%%Работа с BIBLATEX
+%\usepackage[backend=biber,bibencoding=utf8,sorting=ynt,maxcitenames=2,style=authoryear]{biblatex}
+%\addbibresource{bib1.bib}
+%\addbibresource{bib2.bib}
+
+%\usepackage[superscript]{cite} % Ссылки в верхних индексах
+%\usepackage[nocompress]{cite} % 
+
+\usepackage{multicol}% Несколько колонок
+
+%%Работа с графикой
+\usepackage{tikz}
+\usepackage{pgfplots}%графики
+\usepackage{pgfplotstable}%
+%\usepackage{mathrsfs}
+%\usetikzlibrary{arrows}
+
+\usepackage{soul}%выделение определений и др. с бОльшими интервалами между буквами: \so{определение}
+\usepackage{color}%работа с цветом: \fcolorbox{black}{lgreen}{текст на зелёном с черной окантовкой}
+
+%\renewcommand{\thezadacha}{\thesection.\arabic{zadacha}}
+
+
+
+
+%%% Заголовок
+\author{Anton}
+\title{\LaTeX Тест документ}
+\date{\today}%можно не указ.(подстав-ся сегодняшняя дата)
+
+\begin{document} % конец преамбулы, начало документа
+
+\maketitle%-вывод на экран заголовка документа
+\begin{center}
+Version 0.2
+\end{center}
+
+
+
+\section{Титульный лист}
+
+\newpage% с новой стр.
+\thispagestyle{empty}%очистить эту стр. от лишнего оформления
+
+\begin{center}
+\textit{Федеральное государственное автономное учреждение \\ высшего профессионального сказочного образования} \\
+\vspace{0.5ex}
+%
+\textbf{НАЦИОНАЛЬНЫЙ ПОЛУ-ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ \\ <<ВЫСШАЯ ШКОЛА ВСЕГОЗНАНИЯ>>}
+\end{center}
+
+\vspace{13ex}
+
+\begin{flushright}%выравнивание по прав. краю
+\noindent%убрать красную строку
+\textit{Бессмертных Кащей Феоктистович} \\
+%
+\textit{студент факультета эзотерики \\ (группа 211Э)}
+\end{flushright}
+
+\begin{center}
+\vspace{13ex}
+\textbf{Р\,Е\,Ф\,Е\,Р\,А\,Т}\\
+\vspace{1ex}
+по алхимии \\
+на тему: \\
+\textbf{\textit{<<превращение железа в золото \\
+с помощью философского камня>>}} \\
+\vfill%заполнение верт. пробел. до след-го текста:
+Москва 2015
+\end{center}
+
+\newpage
+
+
+\section{Ошибки в \LaTeX}
+
+Реакция на ошибки при трансляции:
+\begin{itemize}
+\item Enter-продолжить трансляцию до след. ошибки
+\item x+Enter- прервать трансляцию
+\item s+Enter- продолжить трансляцию до конца
+\item i+Enter- ввести исправленную команду в консоль и продолжить трансляцию
+\item h+Enter- справка об ошибке
+\end{itemize}
+
+
+
+\section{Начало документа и преамбула}
+\subsection{Классы и настройки документа}
+
+\verb|\documentclass[a4paper]{article}|- обязательная строка в преамбуле\\
+Обязательный аргумент{} - класс документа:
+\begin{itemize}
+\item article удобно применять для статей
+\item report — для более крупных статей, разбитых на главы, или небольших книг
+\item book — для книг
+\item beamer - презентации
+\end{itemize}
+
+\noindent Необязательные аргументы[](через запятую):
+\begin{itemize}
+\item a4paper- формат бумаги А4
+\item landscape- альбомная ориентация
+\item twoside- разные поля слева и справа(art-oneside)
+\item twocolumn- 2 колонки(proc-всегда)
+\item draft-черновой вариант с помет. длинных строк
+\item fleqn/leqno- выключные формулы/номера располож. слева
+\end{itemize}
+
+\noindent Некоторые важные подключаемые модули:
+\begin{itemize}
+\item \verb|\usepackage[T2A]{fontenc}|- кодировка
+\item \verb|\usepackage[utf8]{inputenc}|- кодировка исходного текста
+\item \verb|\usepackage[english,russian]{babel}|- локализация и переносы
+\item \verb|\usepackage{graphicx}|- Для вставки рисунков
+\item \verb|\graphicspath{{images/}{images2/}}|- путь папки с картинками
+\item \verb|\usepackage{hyperref}|- создание ссылок
+\item \verb|\usepackage{tikz}|-продвинутая графика
+\item \verb|\usepackage{pgfplots}|- создание графиков
+\end{itemize}
+
+
+
+\subsection{Иерархия названий}
+
+\begin{itemize}
+\item[] Part(часть)-
+\item[] Chapter(часть-в report и book)-
+\item[] Section(параграф)-
+\item[] Subsection-
+\item[] Subsubsection-
+\item[] Paragraph(абзац)-
+\item[] Subparagraph
+\end{itemize}
+
+\noindent\verb|\section{Название параграфа}|
+
+
+
+\subsection{Общие ссылки}
+
+\verb|\label{маркер}|- ставится у того объекта на который надо сослаться \\
+\verb|\pageref{маркер}|- ссылка на страницу с этим маркером(ставится где угодно)\\
+\verb|\ref{маркер}|- ссылка на:
+\begin{itemize}
+\item команды рубрикации текста (chapter, section,| и т.п.); те из них 
+(наиболее «мелкие»), что номеров разделов не печатают, влияния 
+на команду ref не оказывают; 
+\item окружения, создающие нумерованные выключные формулы (та- 
+кие, как equation и eqnarray, а также многочисленные окружения, 
+определенные в пакете amsmath: multline, gather, align и иже с 
+ними);
+\item команда \verb|\caption| картинка;
+\item команда \verb|\item| в окружении enumerate; 
+\item команда \verb|\cite| источник цититирования из библиографического списка
+\end{itemize}
+
+
+
+\subsection{Стили}
+
+\verb|\newpage| -разрыв страницы(новая стр.) \\
+\verb|\clearpage| -то же, но если есть плавающие элем.(картинки, таблицы), будут напечатаны сначала они \\
+\verb|\pagestyle{}|-стиль всех страниц:
+\begin{itemize}
+\item empty-нет колонтитулов и номеров стр.
+\item plain-нет колонтитулов, стр. посередине внизу
+\item headings-номер в колонтитуле
+\item myheadings-то же со своими настройками
+\end{itemize}
+\verb|\thispagestyle{}|-стиль данной страницы \\
+Ширина страницы = \verb|\textwidth=7cm|(ширина текста) + \verb|\oddsidemargin=0pt|(левое поле = 1 дюйм(default)+0pt) + правое поле-автоматически \\
+\verb|\section[О слонах]{Кое-что о слонах}|-необязательный атрибут - для оглавления и колонтитулов \\
+\verb|\titlepage|-(в преамб.) для создания титульного листа(в article)
+
+
+\section{Текст}
+\subsection{Строки}
+
+Пробелы между словами:
+\begin{itemize}
+\item \verb|\!| отрицательный\!тонкий\!пробел
+\item \verb|\,| тонкий\,пробел
+\item \verb|\:| средний\:пробел
+\item \verb|\;| толстый\;пробел
+\item обычный пробел
+\item \verb|\quad| пробел\quad1em
+\item \verb|\qquad| пробел\qquad2em \\
+\end{itemize}
+Слово \raisebox{2pt}{подскочило} - \verb|\raisebox{2pt}{подскочило}| \\
+в строке, а это \raisebox{-2pt}{провалилось} - \verb|\raisebox{-2pt}{провалилось}| \\
+\verb|\centerline{Центрирует отдельную строку}| - \\
+\centerline{Строка по центру} \\
+\verb|Абракадабра\footnote{сноска внизу страницы}| --Абракадабра\footnote{неизвестное слово}--сказал он.
+
+В строку\qquad 
+\parbox{4cm}{вставили целый абзац текста, сверстанного по всем \TeX’овским правилам, шириной 4см. Можно также вставлять внутритекстовую высокую матаматическую формулу. После этого продолжается}
+\qquad прерванная строка. \\
+\begin{verbatim}
+В строку\qquad 
+\parbox{4cm}{вставили целый абзац текста, сверстанного по всем 
+\TeX овским правилам, шириной 4см. Можно также вставлять внутритексто-
+вую высокую матаматическую формулу. После этого продолжается}
+\qquad прерванная строка.
+\end{verbatim}
+\fbox{текст или формула в рамке}, если нужно поместить сюда целый абзац, вставляем текст в окружение \verb|\parbox|
+\begin{verbatim}
+\fbox{текст или формула в рамке, если нужно поместить сюда целый 
+абзац, вставляем текст в окружение \parbox}
+\end{verbatim}
+
+
+
+
+\subsection{Абзацы}
+
+\verb|\par или \\[5pt]| конец абзаца(перевод строки), после можно 
+указать необязательный аргумент, расстояние до след. строки \\
+\verb|\smallskip|- задает стандартные промежутки между абзацами(\verb|\medskip, \bigskip|) \\
+\verb|\vspace{2ex}/\hspace{1cm}| - вертикальный/горизонтальный промежуток \\
+\verb|\noindent| или \verb|\parindent=0pt| - убирает нежелательный отступ в первой строке(красную строку) или делает его больше/меньше чем стандартный \\
+
+\hrule\smallskip
+Внутри абзаца тоже будет \vrule{} линейка.
+\smallskip\hrule
+\bigskip
+\noindent \verb|\rule[-3pt]{5pt}{5pt}|- Настройки линейки: сдвиг влево-3pt, ширина и высота- 5pt \\
+Как правило, для верт. линейки указывают ширину, а для горизонтальной - высоту: \\
+\verb|\vrule width 2mm| \\
+\verb|\hrule height 2mm| \\
+\noindent\verb|\underline{подлежащее\strut}| - распорка или невидимая линейка, для того, чтобы разные слова были одинаковой фактической высоты, например для подчеркивания:
+\underline{\strut слова}
+\underline{люлька}
+\underline{подряд\strut}
+
+
+
+\subsection{Кегль - размеры шрифта}
+
+\begin{table}[!h]
+\caption{Размеры шрифта}
+\centering
+\begin{tabular}{|l|l|}
+ \hline \verb|\tiny|         & {\tiny крошечный }\\
+ \hline \verb|\scriptsize|   & {\scriptsize очень маленький} \\
+ \hline \verb|\footnotesize| & {\footnotesize довольно маленький} \\
+ \hline \verb|\small|        & {\small маленький }\\
+ \hline \verb|\normalsize|   & {\normalsize нормальный }\\
+ \hline \verb|\large|        & {\large большой }\\
+ \hline \verb|\Large|        & {\Large еще больше} \\
+ \hline \verb|\LARGE|        & {\LARGE очень большой} \\
+ \hline \verb|\huge|         & {\huge огромный }\\
+ \hline \verb|\Huge|         & {\Huge громадный }\\
+ \hline
+\end{tabular}
+\end{table}
+
+\noindent\verb|{\small Маленький}| текст. \\%1 способ
+Какой-нибудь \Large большой \normalsize и нормальный текст. \\%2 способ
+\begin{tiny}%3 способ
+Малюсенький текст
+\end{tiny}
+
+
+
+\subsection{Начертание шрифта}
+
+\begin{itemize}
+\item семейство: означает примерно (но не в точности) то же, что отечественный термин «гарнитура». Это: rmfamily (шрифты с засечками), sffamily (шрифты без засечек) и ttfamily (шрифты типа «пишущая машинка»); 
+\item насыщенность: определяет ширину и жирность шрифта. Возможны насыщенности: средняя(mdseries) и полужирная (bfseries);
+\item начертание: бывает прямое (upshape), курсивное (itshape), наклонное (slshape) и «капитель» (scshape).
+\end{itemize}
+
+\noindent Некоторым сочетаниям атрибутов никакого шрифта не соответствует. В этом случае затребованный, но отсутствующий шрифт заменяется на другой (по возможности, с близкими атрибутами).
+
+\begin{table}[!h]
+\caption{Начертание шрифта}
+\centering
+\begin{tabular}{|c|c|c|}
+ \hline Без аргументов & С аргументом(+) & На печати выйдет \\
+\hline \verb|{\rmfamily Шрифт}| & \verb|\textrm{Шрифт}| & \textrm{Шрифт} \\
+\hline \verb|{\sffamily Шрифт}| & \verb|\textsf{Шрифт}| & \textsf{Шрифт} \\
+\hline \verb|{\ttfamily Шрифт}| & \verb|\texttt{Шрифт}| & \texttt{Шрифт} \\
+\hline \verb|{\mdseries Шрифт}| & \verb|\textmd{Шрифт}| & \textmd{Шрифт} \\
+\hline \verb|{\bfseries Шрифт}| & \verb|\textbf{Шрифт}| & \textbf{Шрифт} \\
+\hline \verb|{\upshape Шрифт }| & \verb|\textup{Шрифт}| & \textup{Шрифт} \\
+\hline \verb|{\itshape Шрифт }| & \verb|\textit{Шрифт}| & \textit{Шрифт} \\
+\hline \verb|{\slshape Шрифт }| & \verb|\textsl{Шрифт}| & \textsl{Шрифт} \\
+\hline \verb|{\scshape Шрифт }| & \verb|\textsc{Шрифт}| & \textsc{Шрифт} \\
+\hline
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Жирный} \textit{курсивный} текст \\
+\verb|\normalfont или \textnormal| возвращает обычный шрифт \\
+\verb|\renewcommand{\bfdefault}{b}|- уменьшает расстояние между буквами в полужирном шрифте(для красоты) \\
+\begin{itemize}
+\item[] \textbf{Полужирный шрифт до}
+\renewcommand{\bfdefault}{b}
+\item[] \textbf{Полужирный шрифт после}
+\end{itemize}
+Умное выделение - \verb|\emph{Выд \emph{елен} ный}| текст :
+\emph{Выд \emph{елен} ный} текст \\
+\verb|\textcolor{red}{красный цвет}| - \textcolor{red}{Текст красного цвета}
+
+
+
+\subsection{Выравнивание текста}
+
+Окружения для выравнивания текста:
+\begin{itemize}
+\item \verb|\begin{quote}|- окружение цитат
+\item \verb|\begin{center}|-выравн. по центру
+\item \verb|\begin{flushleft}|- по левому
+\item \verb|\begin{flushright}|- по правому краю
+\end{itemize}
+
+\noindent Чтобы показать сам код \LaTeX а:
+\verb|\verb"\dots"|-(вместо " может быть любой символ, не встречающийся в коде), или окружение:
+\begin{verbatim}
+\begin{verbatim}
+код...
+end{verbatim}
+\end{verbatim}
+
+Так же пакет \verb|\usepackage{moreverb}|: подключает окружение listing с буквальным воспроизведением кода, с отступами и номерами строк- \\
+\verb|\begin{listing}[1-шаг]{1-началь. номер}| \\
+\verb|\listinginput[1]{1}{Analyt1.txt}|-берёт данные из внешнего файла
+
+
+
+\subsection{Перечни}
+
+\begin{verbatim}
+ненумерованый список:
+\begin{itemize}
+\item пункт
+\end{itemize}
+
+нумерованый список:
+\begin{enumerate}
+\item пункт
+\end{enumerate}
+
+перечень с заголовком(словарь):
+\begin{description}
+\item[термин] определение
+\end{description}
+\end{verbatim}
+
+\noindent Вложенность списков:
+\begin{itemize}
+\item Первый пункт
+\item[*] Второй пункт - перечень: \begin{enumerate}
+\item[$\surd$] Дочерний пункт - перечень: \begin{enumerate}
+\item Первый пункт нумерованного списка - перечень: \begin{itemize}
+\item Пункт четвертого уровня вложенности
+\end{itemize}
+\item Второй пункт нумерованного списка
+\end{enumerate}
+\item Еще дочерний пункт 
+\end{enumerate}
+\item Третий пункт
+\end{itemize}
+
+\noindent Ссылки на пункты списка:
+\begin{enumerate}
+\item Переходите улицу только на зеленый свет. \label{green}
+\item Стоящий трамвай обходить можно, а автобус нет. \label{tram}
+\end{enumerate}
+Согласно правилу~\ref{tram}, на стр.\pageref{tram}...
+
+\begin{description}
+\item[\textit{Черника}] Черные ягоды.
+\item[Голубика] Голубые ягоды.%\textbf- по умолч.
+\end{description}
+
+
+
+\subsection{Пакет Babel - русификация}
+
+\noindent\verb|\renewcommand{\theenumi}{\Asbuk{enumi}}| - переопределение нумерованного списка, вместо цифр - буквы
+\begin{enumerate}
+\renewcommand{\theenumi}{\Asbuk{enumi}}
+\item One
+\item Two
+\item Three
+\end{enumerate}
+
+
+
+\subsection{Тонкости набора текста}
+
+\verb|\dots(или \ldots) / \cdots|-многоточие снизу/посередине строки : $\ldots\cdots$\\
+\verb|\symbol{104}|-  ввод любого символа с ASCII-кодом : \symbol{104}\\
+Подсказка «АВИКОСУЯ»- все русские однобуквенные слова\\
+\verb|\marginpar[$\Longrightarrow$]{$\Longleftarrow$}|-заметки на полях, если справа(необязательный аргумент), слева(обязателный) : \marginpar[$\rightarrow$]{$\leftarrow$}\\
+\verb|\righthyphenmin=2| -переносы с отрывом 2 последних букв будут разрешены, как в рус.яз.(3 буквы - в англ.яз.), пример: по-ле \\
+\verb|\hyphenation{вклю-чен об-ласть ар-буз}|- указание переносов в нескольких словах, если LaTeX не знает как перенести слово \\
+\verb|тво\-рог|- одноразовый способ указания переноса \\
+\verb|\tolerance=400|- разреженность строк(200- по умоч., можно 300-400) \\
+пистолет-пулемет(дефис \verb|-|) \\
+Лето -- это жара(короткое тире \verb|--|) \\
+Сказка --- ложь(длинное тире \verb|---|) \\
+Москва "--- столица РФ.(между подлежащ. и сказуем. \verb|"---|) \\
+"--*Сударь, вы -- полоумный.(прямая речь \verb|"--*|) \\
+<<Ёлочки и ,,лапки` `>>(вложенность кавычек \verb|<<>> ,,``|) \\
+\verb|\hrulefill{ширина}| - линейка по нижней части строки. \\
+\newcommand{\hrf}[1]{\hbox to#1{\hrulefill}}
+\verb|\newcommand{\hrf}[1]{\hbox to#1{\hrulefill}}| - для удобства можно создать свою сокращ. команду для линейки \\
+Дата в бланке : <<\hrf{2em}>> \hrf{6em} 200\hrf{1em}~г. \\
+\verb|<<\hrf{2em}>> \hrf{6em} 200\hrf{1em}~г.|
+
+
+
+\subsection{Пробелы}
+
+В русском языке принято:
+
+\begin{enumerate}
+\item еденицы изм., процент при переносе не долж. отделяться(неразрывный пробел~): \verb|10~кВт|: 10~кВт, 20~мПа, 30~\%
+\item градусы углов: \verb|$45^\circ$|: $45^\circ$     градусы температ.: \verb|23~${}^\circ$C|: 23~${}^\circ$C
+\item номер и параграф: \verb|№~3, \S~8'|: №~3, \S~8
+\item стандарт. сокращ-я: \verb|т.\:е., и~т.\:д., и~т.\:п.|--- т.\:е., и~т.\:д., и~т.\:п.
+\item неразрывать предлоги с послед-м словом: \verb|через~поляну|: на~речку, к~дому, в~течение
+\end{enumerate}
+
+
+
+\subsection{Колонки}
+
+\begin{verbatim}
+\begin{multicols}{3}
+Текст в 3 колонки
+\end{multicols}
+\end{verbatim}
+
+\noindent Параметры многоколоночности(в окружении или преамбуле): \\
+\verb|\columnsep=10pt|-расстояние между колонками \\
+\verb|\columnseprule=0.4pt| -линейка между колонками(0.4-оптимальный вариант)
+
+\begin{multicols}{2}
+\columnsep=20pt
+\columnseprule=0.5pt
+Проснувшись и взглянув на часы, я увидел, что уже половина седьмого. Ни один из моих людей еще не встал. Чтобы не задерживаться и быстрее отправиться в путь, я решил поднять их всех сразу и выстрелил из двустволки. Они быстро вскочили , а затем, крича стали уверять меня, будто совсем оглохли. Я сказал чтобы они не волновались, попросил скорее развести огонь и готовить завтрак. Выяснив, в чем дело, они мирно возвратились обратно, я же, позавтракав, отправился осматривать окрестности, чтобы выбрать более удобный путь для продолжения нашей прогулки.
+\end{multicols}
+
+\begin{enumerate}
+\begin{multicols}{3}
+\item $2+2=4$
+\item $3+3=6$
+\item $4+4=8$
+\item $5+5=10$
+\item $6+6=12$
+\item $7+7=14$
+\end{multicols}
+\end{enumerate}
+
+
+
+\subsection{Создание нумерованных спец. объектов - newtheorem}
+
+Команда \verb|\newtheorem| создаёт различные окружения для создания самих теорем(theorem), утверждений(proposition), следствий(corollary), задач(problem), решений(nonum) и т.д., называть их можно по своему, и обычно они задаются в преамбуле: \\
+
+\verb|\newtheorem{theоrem}{Теорема}[section]| \\%1.1
+newtheorem - команда создания н-р теоремы \\
+theorem - новое окружение для теорем \\
+Теорема - название \\
+section - подчинение счётчику разделов: будет нумероваться 1.1, 3.4, 5.2
+
+\begin{theorem}[Простое равенство] \label{theorem1}%теорема
+Теорема: $2+2=4$
+\end{theorem}
+
+\begin{verbatim}
+\begin{theorem}[Простое равенство] \label{theorem1}%теорема
+Теорема: $2+2=4$
+\end{theorem}
+\end{verbatim}
+
+Какой-то текст, ещё текст. Смотри теорему \ref{theorem1} на стр. \pageref{theorem1}.
+
+\begin{proposition}%утверждение
+Утверждение: $3\times3=9$
+\end{proposition}
+
+\begin{corollary} \label{corol1}%следствие
+Следствие: $5/5=1$
+\end{corollary}
+
+\begin{verbatim}
+\begin{corollary} \label{corol1}%следствие
+Следствие: $5/5=1$
+\end{corollary}
+\end{verbatim}
+
+Какой-то текст, ещё текст. Согласно следствию \ref{corol1} на стр. \pageref{corol1}.
+
+\begin{problem}%задача
+Задача: $4+4=8$
+\end{problem}
+
+\begin{nonum}%решение
+Решение: Что-нибудь(ремарка)
+\end{nonum}
+
+
+
+
+\section{Формулы}
+\subsection{Простые формулы}
+
+\verb|$2+2=4$ : | Внутритекстовая $2+2=4$ формула. \\
+\verb|\[3\times3=9\] - выключная формула : | \[3\times3=9\] \\
+\verb|$2^{3^2}$ - степень : | $2^{3^2}$ \\
+\verb|\frac,\dfrac,\cfrac,\tfrac|-дробь мелкая, крупная, многоэтажная, дробная степень \\
+\verb|$\frac12$, $\frac x 2$ - дроби : | $\frac12$, $\dfrac x 2$ \\
+\verb|$\cfrac{1}{\sin\alpha-\left(\cfrac{\pi}{2}\right)}$ : | $\cfrac{1}{\sin\alpha-\left(\cfrac{\pi}{2}\right)}$ \\
+$\tg\alpha=\dfrac{\sin\alpha}{\cos\alpha}$ \\
+
+\noindent Химические формулы: \\
+$C_{16}H_{34} \to C_8H_{18}+C_8H_{16}$ \\
+$CH_2=CH_2+O+H_2O \xrightarrow{KMnO_4} HO-CH_2-CH_2-OH$ \\
+Фигурные скобки сверху и снизу: $\underbrace{\overbrace{0 1 2 \dots 9}^{10}\rm A B \dots F}_{16}$ : \\
+\verb|$\underbrace{\overbrace{0 1 2\dots 9}^{10}\rm A B \dots F}_{16}$| \\
+Выделение разрядов числа: \verb|123\,456\,789| - 123\,456\,789 \\
+Мелкие символы над и под знаком: $\underset{y=0}{\overset{z=1}{X}}$ : \\
+\verb|\underset{низ}{\overset{верх}{X}}|
+
+
+
+\subsection{Математические шрифты и стили}
+
+\noindent По умолч. все буквы в формулах - курсивные, если нужно иное: 
+\begin{itemize}
+\item \verb|\mathbf{}| $\mathbf{bold}$ - полужирный шрифт
+\item \verb|\mathsf{}| $\mathsf{serif}$ - без засечек
+\item \verb|$\mathcal{ABCDEFGHIJKLM}$| - $\mathcal{ABCDEFGHIJKLM}$-стандартный рукописный шрифт TEXа
+\item \verb|$\mathscr{ABCDEFGHIJKLM}$| - $\mathscr{ABCDEFGHIJKLM}$-витиеватый шрифт, доступный при подключении пакета \verb|\usepackage{mathrsfs}|
+\item Шрифты, доступные при подключении пакета \verb|\usepackage{amssymb}|: \\
+\verb|$\mathbb{ABCDEFGHIJKLM}$| - $\mathbb{ABCDEFGHIJKLM}$-двойной шрифт \\
+\verb|$\mathfrak{ABCDEFGHIJKLM0123456789}$| - $\mathfrak{ABCDEFGHIJKLM0123456789}$  -готический
+\end{itemize}
+
+Стили написания мат. формул, если нужно использовать не по стандарту: \\
+\begin{itemize}
+\item Выключной(\verb|$\displaystyle{формула}$|) : $\displaystyle 1\times(2+3)-4=\frac x2$
+\item Текстовый(\verb|$\textstyle{формула}$|) : $\textstyle 1\times(2+3)-4=\frac x2$
+\item Индексный(\verb|$\scriptstyle{формула}$|) : $\scriptstyle 1\times(2+3)-4=\frac x2$
+\item Подиндексный(\verb|$\scriptscriptstyle{формула}$|) : $\scriptscriptstyle 1\times(2+3)-4=\frac x2$
+\end{itemize}
+
+
+
+\subsection{Сложные формулы}
+
+Для набора важных формул используются разные окружения. При этом формула автоматически получает номер. А при добавлении к нему метки \verb|\label{formula}| или \verb|\label{eq:form}|, на неё затем можно сослаться в тексте. А если нужно самостоятельно пронумеровать формулу : \verb|$2+2=4$ \eqno(1.1)|  \\
+\begin{enumerate}
+\item equation для записи формулы :
+\begin{equation} \label{eq:speed}
+V=\dfrac St
+\end{equation}
+\begin{verbatim}
+\begin{equation} \label{eq:speed}
+V=\dfrac St
+\end{equation}
+\end{verbatim}
+\item Окружение multline для записи длинной формулы на несколько строк:
+\begin{multline}
+1+2+3+4+5+6+7+8+9+10+\dots \\ \dots+49+50+51+\dots \\ \dots+95+96+97+98+99+100=5050
+\end{multline}
+\item align для выравнивания нескольких формул(каждое нумеруется, если какую-либо не нужно нумеровать, после неё используется команда \verb|\notag|):
+\begin{align}
+2+2&=4 \label{prost} \\
+33+33&=66\notag \\%чтобы не нумеровать одно из ур-й
+128-37&=91
+\end{align}
+\end{enumerate}
+Уравнение : \eqref{prost} на странице \pageref{prost} \\
+Окружение со * , чтобы не присваивать номер
+\begin{align*}%не присваив. №
+2+2&=4 \\ 
+33+33&=66
+\end{align*}
+
+Следующие окружения должны быть обернуты в \verb|\[...\]| -переход в математический режим(не нумеруются) или в окружение equation(нумеруются) : \\
+\begin{enumerate}
+\item aligned - для нумерации нескольких связанных формул или для создания системы уравнений :
+\begin{equation}
+\begin{aligned}
+2+2&=4 \\
+33+33&=66
+\end{aligned}
+\end{equation}
+\begin{verbatim}
+\begin{equation} \label{eq:sist_ur}
+\left\{
+\begin{aligned}
+4x+72y&=18 \\
+7x-y&=250
+\end{aligned}
+\right.
+\end{equation}
+\end{verbatim}
+\begin{equation} \label{eq:sist_ur}
+\left\{
+\begin{aligned}
+4x+72y&=18 \\
+7x-y&=250
+\end{aligned}
+\right.
+\end{equation}
+Система равнений - \eqref{eq:sist_ur} на стр. \pageref{eq:sist_ur}.
+\item cases - кусочное задание функций :
+\[
+|x|=\begin{cases}
+x, &\text{если } x \ge 0 \\
+-x, &\text{если } x < 0
+\end{cases}
+\]
+\item pmatrix - матрица со скобками(), vmatrix-||, bmatrix-[] :
+\[
+\begin{pmatrix}
+a_{11}&a_{12}&a_{13} \\
+a_{21}&a_{22}&a_{23} \\
+a_{31}&a_{32}&a_{33}
+\end{pmatrix}
+\]
+\end{enumerate}
+
+
+
+\subsection{Тонкости набора формул}
+
+\begin{verbatim}
+\скобка\matrix- любые скобки у матрицы
+\mbox или \text(исп. asmmath)- обычный текст в формуле
+\bigl\bigr- самостоятельное определение размера скобок : \\ (\bigl, \Bigl, \biggl, \Biggl)
+\binom xy- дробное расположение чисел, но без черты
+\xrightarrow[down]{up}- надпись под/над стрелкой
+\end{verbatim}
+
+\noindent Русское и английское написание греческих букв в формулах можно переопределить в преамбуле.
+\begin{itemize}
+\item[англ.] \verb|$ \epsilon \ge \phi$, $\phi \leq \epsilon$, $\kappa \in \emptyset$|
+\item $ \epsilon \ge \phi$, $\phi \leq \epsilon$, $\kappa \in \emptyset$
+\item[рус.] \verb|$\varepsilon \geqslant \varphi$,| \\\verb|$\varphi \leqslant \varepsilon$, $\varkappa \in \varnothing$|
+\item $\varepsilon \geqslant \varphi$, $\varphi \leqslant \varepsilon$, $\varkappa \in \varnothing$
+\end{itemize}
+
+
+
+\subsection{Коммутативные диаграммы}
+
+Нужно подключить пакет - amscd - коммутативные диаграммы, \verb|\usepackage{amscd}|
+\[
+\begin{CD}
+0 @>>> E^\prime @>f>> E @>g>> E^{\prime\prime}@>>> 0\\ %-@>f>>- текст над стрел.
+@.@VVpV@AfAA@VVrV@|\\ %-стрел. вниз-вверх, @.-нет стрел., @|-верт. равно
+0 @>>> F^\prime@>f>> F @>g>> F^{\prime\prime}@= 0 %{}- нет знач-я, @= равно, 
+\end{CD}
+\]
+\begin{verbatim}
+\[
+\begin{CD}
+0 @>>> E^\prime @>f>> E @>g>> E^{\prime\prime}@>>> 0\\
+@.@VVpV@AfAA@VVrV@|\\
+0 @>>> F^\prime@>f>> F @>g>> F^{\prime\prime}@= 0
+\end{CD}
+\]
+@>>> -простая стрелка
+@>a>> -стрелка с обозначением
+@<<b< -обратная стрелка
+@VVxV -стрелка вниз
+@AyAA -стрелка вверх
+@A{A}AA -если буквы совпадают
+@= -равно
+@| -равно вертикальное
+@. -пусто
+\end{verbatim}
+
+Пакет для более сложных коммутативных диаграмм: \\
+\verb|\usepackage[matrix,arrow,curve]{xy}|
+$$ 
+\xymatrix{ 
+&& M’\ar@{o->}[dl]^e \ar@/_1pc/@{-->}[ddll]_u\\ 
+& K\ar[rr]^f \ar[dr]^h && L \ar[ul]_a \ar[dl]_g\\ 
+L’\ar@{o->}[ur]_d \ar@/_1pc/@{-->}[rrrr]_v && 
+M\ar[rr]^p \ar[ll]_c && K’\ar@{o->}[ul]_b 
+} 
+$$
+
+\begin{verbatim}
+$$ 
+\xymatrix{ 
+&& M’\ar@{o->}[dl]^e \ar@/_1pc/@{-->}[ddll]_u\\ 
+& K\ar[rr]^f \ar[dr]^h && L \ar[ul]_a \ar[dl]_g\\ 
+L’\ar@{o->}[ur]_d \ar@/_1pc/@{-->}[rrrr]_v && 
+M\ar[rr]^p \ar[ll]_c && K’\ar@{o->}[ul]_b 
+} 
+$$
+\end{verbatim}
+
+
+
+\subsection{Еще примеры формул}
+
+Пример: арифметические действия с многочленами : \\
+$$
+\arraycolsep=0.05em
+\begin{array}{rrr@{\,}r|r}
+x^2&{}+2x&{}-12&&\,x+5\\
+\cline{5-5}
+x^2&{}+5x&&&\,x-3\\
+\cline{1-2}
+&{}-3x&{}-12\\
+&{}-3x&{}-15\\
+\cline{2-3}
+&&3
+\end{array}
+$$
+
+
+
+\section{Картинки и таблицы}
+\subsection{Картинки}
+
+Окружения figure и table не рисуют картинку/таблицу, они занимаются только размещением картинки/таблицы на странице. \\
+Пути к папке с картинками указывают в преамбуле. \\
+Еденицы измерения : 
+\begin{itemize}
+\item mm, cm, in
+\item em/ex ширина буквы M /высота буквы x
+\item page-/text- {-width/-height} высота/ширина страницы/текста
+\end{itemize}
+\begin{verbatim}
+\begin{figure}
+\includegraphics{znak.jpg} %-файл
+\caption{Значок} %-название
+\end{figure}
+\end{verbatim}
+\verb|\includegraphics{znak.jpg}|- вставка рисунка без надписи\\
+\verb|\includegraphics[scale=0.3]{logo.pdf}|- изменение размера \\
+\includegraphics{znak.jpg}
+
+
+
+\subsection{Табулятор(примитивные таблицы)}
+
+\begin{tabbing}
+начинаем \=продолжаем \= заканчиваем\kill%дублируем, если это самая длинная строка(она не будет напечатана), для проставления табуляций, следующая строка - в обычном режиме
+начало\>середина\>конец\\%\= установить позицию табуляции, \quad/\qquad пробел/длинный пробел
+раз\>два\>три\\%перейти к позиции табуляции
+раз\> два\> три\\ 
+начинаем\>продолжаем\>заканчиваем\\ 
+\end{tabbing}
+\verb|\=| установить позицию табуляции, \\
+\verb|\>| перейти к позиции табуляции
+
+
+
+\subsection{Простые таблицы}
+
+Окружение tabular :
+\begin{verbatim}
+\begin{tabular}{|l|c||r|}
+\hline Слагаемое1 & Слагаемое2 & Сумма \\[5pt]
+\hline a & b & c \\
+\hline x & y & z \\
+\hline 111 & 222 & 333 \\
+\hline
+\end{tabular}
+\end{verbatim}
+
+\begin{tabular}{|l||c|r|}
+\hline Слагаемое1 & Слагаемое2 & Сумма \\[3pt]
+\hline a & b & c \\
+\hline x & y & z \\
+\hline 111 & 222 & 333 \\
+\hline
+\end{tabular} \\
+
+\noindent В атрибуте {|l|c|r|}- указывается отделение столбцов верт. линией и выравнивание по левому(default), середине и правому краю. \\
+\verb|&| - отделяет ячейки таблицы \\
+\verb|\hline|-горизонтальная черта(отделяет строки таблицы) \\
+\verb|\\[3pt]|- отделяет заголовок
+
+%\setlength{\extrarowheight}{4mm}
+\begin{tabular}{|p{50px}|c|p{3cm}|}
+ \hline a & b & c \\
+ \hline x & y & z \\
+ \hline 111 & $\displaystyle\frac{b}{y}$ & 333 \\[4mm]
+ %\setlength{\extrarowheight}{0}
+ \hline
+\end{tabular} \\
+
+\noindent В атрибуте {|p{50px}|c|p{3cm}|} - можно задать ширину столбца вручную, если внутри ячейки длинное предложение или абзац.
+
+Окружение tabularx используется для того чтобы ширина колонок была одинаковая : \\
+
+\begin{tabularx}{\textwidth}{|X|c|X|}%чтобы ширина колонок была одинаковая
+ \hline xfkj kkf kkd dvheuj fdkjhj mdfgnj & kdk ksc & kskkz ksjd ksdgd jkjkxz kjrkjk kjkfsg lkjkdsjf kjfjk kjkjjhk kjlhf jkhsa\\
+ \hline
+\end{tabularx} \\
+
+Окружение tabulary используется для того чтобы высота колонок была одинаковая : \\
+
+\begin{tabulary}{\textwidth}{|C|J|R|}%чтобы высота колонок была одинаковая
+ \hline xfkj kkf kkd dvheuj fdkjhj mdfgnj & kdk ksc & kskkz ksjd ksdgd jkjkxz kjrkjk kjkfsg lkjkdsjf kjfjk kjkjjhk kjlhf jkhsa \\
+ \hline
+\end{tabulary} \\
+
+\begin{tabular}{lr@{--}l@{\qquad Обед\quad}r@{--}l}
+Понедельник & $8^{30}$ & 15 & 11 & 12 \\ 
+Вторник& 12 & 19 & 15 & 16 \\ 
+Среда& 10 & 17 & $12^{30}$ & $13^{15}$ \\ 
+Четверг& 9 & 17 & 12 & 13 \\ 
+Пятница& 11 & 16 & &\\ 
+Суббота& 8 & 14 & 11 & 12\\ 
+\end{tabular} \\
+
+\noindent \verb|@{}|- встраивает нужные символы или команды между столбцами : \\
+\verb|\begin{tabular}{lr@{--}l@{\qquad Обед\quad}r@{--}l}| \\
+\verb|!{\hspace{2pt}}|- использование команд TeX \\
+\verb|>{} <{}|-команда до и команда после столбца : \\
+\verb|\begin{tabular}{l>{$}l<{$}}%>{}<{}| \\
+
+Таблица арифметических действий над числами : \\
+
+\begin{tabular}{l>{$}l<{$}}%>{}<{}-команда до и после
+Сложение & 2+2=4 \\
+Вычитание & 3-1=2 \\
+Умножение & 4\times4=16 \\
+Деление & 8/2=4 \\
+\end{tabular} \\
+
+Подключенный стилевой пакет hhline позволяет более тонко настроить линии между столбцами и строками. \\
+
+\begin{tabular}{|c|cc|c|} 
+\hline А & Б & В & Г\\ 
+\hhline{|=|~~|-|}%тонкая настройка линии
+Д & Е & Ж & З\\ \hline 
+\end{tabular} \\
+
+\begin{tabular}{||cc||cc||}
+\hhline{|t:==:t:==:t|}1 &2 &3 &4\\
+5 &6 &7 &8\\
+\hhline{#==::==||}А & Б & В & Г\\
+Д & Е & Ж & З\\
+\hhline{|b:==:b:==:b|}
+\end{tabular}
+
+
+
+\subsection{Плавающие картинки и таблицы}
+
+Ссылка на таблицу: \ref{tab:mytab} \\
+Окружение table подбирает расположение таблицы и упоминания в тексте о ней.
+\begin{verbatim}
+\begin{table}[!h]
+\begin{center}
+\caption[Таблица]{Таблица с кучей фишек.}\label{tab:mytab}
+\begin{tabular}{|c|c||l||c|c|}
+\hline 1 & 2 & 3 & 4 & 5 \\
+\hline Первый & Второй & \multicolumn{3}{c|}{Третий -- пятый}\\
+\cline{1-1} \cline{3-5} 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 2 & 3 & 4 & 5\\
+\hline \multirow{3}{*}{Три строки} & 2 & 3 & 4 & 5\\
+\cline{2-5} & 2 & 3 & 4 & 5\\
+\cline{2-5} & 2 & 3 & 4 & 5\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{verbatim}
+
+\begin{table}[!h]%подбирает расположение таблицы и упоминания в тексте о ней (h- здесь, !h- строго здесь)
+\begin{center}%выравн. по центру страницы
+\caption[Таблица]{Название таблицы.}\label{tab:mytab}
+\begin{tabular}{|c|c|l|c|c|}
+\hline 1 & 2 & 3 & 4 & 5 \\
+\hline Первый & Второй & \multicolumn{3}{c|}{Третий -- пятый}\\
+\cline{1-1} \cline{3-5} 1 & 2 & 3 & 4 & 5\\
+\hline 1 & 2 & 3 & 4 & 5\\
+\hline \multirow{3}{*}{Три строки} & 2 & 3 & 4 & 5\\
+\cline{2-5} & 2 & 3 & 4 & 5\\
+\cline{2-5} & 2 & 3 & 4 & 5\\
+\hline
+\end{tabular}
+\end{center}
+%\caption{Заголовок мог быть и здесь}
+\end{table}
+
+Необязательные аргументы окружения table:
+\begin{itemize}
+\item t - разместить в верхней части страницы
+\item b - разместить в нижней части страницы
+\item p - разместить на отдельной странице, целиком состоящей из «плавающих» картинок/таблиц
+\item h - разместить прямо там, где она встретилась в исходном тексте
+\end{itemize}
+[tbp]-по умолчанию, использование <<!>> c аргументом повышает шанс размещения таблицы где нужно(!h) \\
+multicolumn и multirow объединяют несколько колонок, строк : \\
+\verb/\multicolumn{3-гориз.ячейки}{|c|}{текст на этом месте}/ \\
+\verb|\multirow{2-верт.ячейки}{*}{текст на этом месте}| \\
+\verb|\cline| - рисует прерывистую горизонтальную линию(если она не на всю ширину таблицы) \\
+
+Окружение longtable создаёт таблицу на нескольких страницах:
+
+\begin{verbatim}
+\begin{longtable}{|c|c|c|c|}
+\caption{Заголовок большой таблицы.}\\
+\hline RND1 & RND2 & RND3 & RND4 \\
+\hline \endfirsthead                  - конец главного заголовка
+\hline 1 & 2 & 3 & 4 \\
+\hline \endhead       -конец заголовка на кажд. промежут. стр-це
+\hline
+\multicolumn{4}{r}{продолжение следует\ldots} \\
+\endfoot               - низ таблицы на кажд. промежут. странице
+\hline
+\endlastfoot%                          - завершение всей таблицы
+0,576745371 & 0,435853468 & 0,36384912 & 0,299047979 \\
+...
+0,094723947 & 0,091199224 & 0,841117852 & 0,617394243 \\
+\end{longtable}
+\end{verbatim}
+
+\begin{longtable}{|c|c|c|c|}
+\caption{Заголовок большой таблицы.}\\
+\hline RND1 & RND2 & RND3 & RND4 \\
+\hline \endfirsthead%конец глав. заголовка
+\hline 1 & 2 & 3 & 4 \\
+\hline \endhead%конец заголовка на кажд. промежут. стр.
+\hline
+\multicolumn{4}{r}{продолжение следует\ldots} \\
+\endfoot%низ табл. на кажд. стр.
+\hline
+\endlastfoot%завершен. всей табл.
+0,576745371 & 0,435853468 & 0,36384912 & 0,299047979 \\
+0,064795364 & 0,028454613 & 0,751312059 & 0,693972684 \\
+0,263563971 & 0,367508634 & 0,075536384 & 0,337780707 \\
+0,957583964 & 0,431948588 & 0,938522377 & 0,464307785 \\
+0,815740484 & 0,123129806 & 0,883432767 & 0,760983283 \\
+0,445062335 & 0,157424268 & 0,883442259 & 0,300596338 \\
+0,187159669 & 0,728663343 & 0,637199982 & 0,765684528 \\
+0,41009848 & 0,457031472 & 0,142858106 & 0,602946607 \\
+0,43315663 & 0,26058316 & 0,611667007 & 0,400328185 \\
+0,824086963 & 0,27304335 & 0,244565296 & 0,219675484 \\
+0,109578811 & 0,278478018 & 0,242519359 & 0,414669471 \\
+0,220778432 & 0,938106645 & 0,502630894 & 0,910760406 \\
+0,905239004 & 0,017835419 & 0,429423867 & 0,299079986 \\
+0,604679988 & 0,784786124 & 0,86825382 & 0,003631105 \\
+0,725883239 & 0,273875543 & 0,843605984 & 0,607743466 \\
+0,555736787 & 0,019487901 & 0,342950631 & 0,537183422 \\
+0,309374962 & 0,44331087 & 0,749656403 & 0,966836051 \\
+0,274332831 & 0,740197878 & 0,865450742 & 0,792816484 \\
+0,968626843 & 0,580215733 & 0,706427331 & 0,879562225 \\
+0,281344607 & 0,51362826 & 0,7998827 & 0,270290356 \\
+0,885143961 & 0,989455756 & 0,235591368 & 0,693434397 \\
+0,505067377 & 0,127308502 & 0,614625825 & 0,277375342 \\
+0,663594497 & 0,023550761 & 0,670822594 & 0,302446663 \\
+0,094723947 & 0,091199224 & 0,841117852 & 0,617394243 \\
+0,490246305 & 0,761569651 & 0,973576975 & 0,51597127 \\
+0,631301873 & 0,155944248 & 0,319958965 & 0,198643097 \\
+0,853761692 & 0,993889567 & 0,105045533 & 0,837805396 \\
+0,149834425 & 0,316419619 & 0,387770251 & 0,552013475 \\
+0,269182006 & 0,721020214 & 0,484218147 & 0,552132834 \\
+0,668632873 & 0,699511389 & 0,278877959 & 0,021775345 \\
+0,62638369 & 0,737702261 & 0,696351048 & 0,256427487 \\
+0,922563692 & 0,629514529 & 0,789891184 & 0,019748079 \\
+0,366649518 & 0,882085214 & 0,805771543 & 0,461659364 \\
+0,178967822 & 0,400706498 & 0,313063544 & 0,425676173 \\
+0,328582166 & 0,124008134 & 0,177734655 & 0,653821253 \\
+0,555736787 & 0,019487901 & 0,342950631 & 0,537183422 \\
+0,309374962 & 0,44331087 & 0,749656403 & 0,966836051 \\
+0,274332831 & 0,740197878 & 0,865450742 & 0,792816484 \\
+0,968626843 & 0,580215733 & 0,706427331 & 0,879562225 \\
+0,281344607 & 0,51362826 & 0,7998827 & 0,270290356 \\
+0,885143961 & 0,989455756 & 0,235591368 & 0,693434397 \\
+0,505067377 & 0,127308502 & 0,614625825 & 0,277375342 \\
+0,663594497 & 0,023550761 & 0,670822594 & 0,302446663 \\
+0,094723947 & 0,091199224 & 0,841117852 & 0,617394243 \\
+\end{longtable}
+
+
+
+\subsection{Обтекание рисунков и таблиц текстом}
+
+\verb|\begin{wrapfigure}{сторона}{ширина или длина}|- l- обтекание слева, r- справа (o-внутренняя сторона, i-внешняя сторона в book) \\
+\verb|\begin{wrapfigure}[14]{r}{60pt}|-14-количество обтекающих строк \\
+
+\begin{wrapfigure}[15]{l}{0.3\textwidth}
+\includegraphics[width=\linewidth]{logo.pdf}
+\caption{Картинка с обтеканием}
+\end{wrapfigure}
+
+РИСУНОК dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut 
+aliquip ex ea commodo consequat. Duis aute irure dolor
+in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur.
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+officia deserunt mollit anim id est laborum.
+dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut 
+aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint
+occaecat cupidatat non proident, sunt in culpa qui.
+
+\begin{wraptable}{r}{0.25\linewidth}
+\caption{Решетчатая}
+\begin{tabular}{|c|c|c|}
+ \hline 1 & 2 & 3 \\
+\hline a & b & c \\
+\hline z & x & y \\
+\hline
+\end{tabular}
+\end{wraptable}
+
+ТАБЛИЦА Duis aute irure dolor 
+in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint
+occaecat cupid dolore magna aliqua. Duis aute irure dolor
+in reprehenderit.
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco
+ laboris nisi ut.
+aliquip ex ea commodo consequat. Duis aute irure dolor
+in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur.
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+officia deserunt mollit anim id est laborum.
+dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut 
+aliquip ex ea commodo consequat.
+
+
+
+\section{Инструменты}
+\subsection{Свои команды}
+
+Команды задаются глобально(на весь документ - в преамбуле) или локально в каком-нибудь окружении. \\
+\verb|\newcommand{\z}{\par\noindent\textbf{Задача.}}|-1)новая команда- создание и оформление задачи. \\
+\verb|\newcommand{\str}[1]{на странице \pageref{#1}}|- ссылка на странице... \\
+\verb|\newcommand{\smb}[2]{\left(\frac{#1}{#2}\right)}|- команда с 2 аргументами \\
+Команда с 2 аргументами, один из них необязательный(x-по умолчанию):
+\begin{verbatim}
+\newcommand{\qwerty}[2][x]{
+\begin{equation}
+#1 \nw #2
+\end{equation}
+}
+\end{verbatim}
+
+\verb|\renewcommand{\chaptername}{Глава}|-переопределение команды(использовать с осторожностью).
+
+$x \ge y$%до
+\verb| до \renewcommand{\ge}{\geqslant} после |
+\renewcommand{\ge}{\geqslant}
+$x \ge y$%после
+
+\verb|\newcommand* и \renewcommand*| используется чаще для выявления ошибки, если в тексте команды встретится незапланированная пустая строка(\verb|\\ или \par|), например, если пропущена скобка. поэтому на пустой строке оставляют знак \%
+
+
+
+\subsection{Счетчики встроенные и созданные}
+
+\begin{verbatim}
+\newcounter{abcd} - новый счетчик=0
+\setcounter{abcd}{100} - установить счетчик в 100=100
+\addtocounter{abcd}{-27} - добавить к счетчику -27=73
+\end{verbatim}
+
+Вывод значения счетчика:
+\begin{verbatim}
+\arabic{abcd} |арабские
+\roman{abcd}  |римские мал.
+\Roman{abcd}  |римские боль.
+\alph{abcd}   |латиница
+\asbuk{abcd}  |русские
+\end{verbatim}
+
+\noindent\verb|\arabic{section}| - встроеный счетчик разделов \\
+\verb|\renewcommand{\thesection}{Asbuk{section}}| - переопределение встроенного счетчика разделов \\
+\verb|\setcounter{section}{0}| - обнуление счетчика разделов \\
+\begin{verbatim}
+\newcounter{nc} - Команда создание задачи
+\newcommand{\z}[1]{
+%
+\addtocounter{nc}{1} - увеличить счетч. на 1
+Задача \thesubsection.\arabic{nc}. #1 - текст задачи
+}
+\end{verbatim}
+\newcounter{nc}[section]
+\newcommand{\z}[1]{%
+
+\addtocounter{nc}{1}%
+Задача \thesubsection.\arabic{nc}. #1%
+}
+
+\z{Текст задачи}
+
+\z{Текст другой задачи}
+
+\z{Найти...}\label{prove}
+
+\noindent В задаче \ref{prove} предлагалось найти...
+
+%\renewcommand{\z}{\thesection.\arabic{\z}} - добавить в преамбулу, тогда в примере выше: в задаче 1.1...
+
+
+
+\subsection{Свои окружения}
+
+Для создания задачника, можно так же использовать не новую команду, а целое окружение :
+\begin{verbatim}
+\newenvironment{zadacha}[1]{
+%
+\addtocounter{nc}{1}%
+Задача \thesubsection.\arabic{nc}.<<#1>>%
+}{\vspace{1cm}}
+\end{verbatim}
+\newenvironment{zadacha}[1]{%
+\addtocounter{nc}{1}%
+Задача \thesubsection.\arabic{nc}.<<#1>>%
+}{\vspace{.5cm}}
+
+\begin{zadacha}{Такая-то задача}
+Текст задачи
+\end{zadacha}
+
+\begin{zadacha}{Такая-то еще задача}\label{prove2}
+Текст еще задачи
+\end{zadacha} \\
+В задаче \ref{prove2} предлагалось найти...
+
+
+
+\subsection{Etoolbox - действия с бинарными переменными}
+
+\begin{verbatim}
+\newbool{answers} - создать новую бинарную переменную(по умол. false)
+\booltrue{answers} - присвоить ей true(например задачник с ответами, показать их)
+\renewcommand{\z}[2][]{%
+\addtocounter{nc}{1} - увеличить счетч. на 1 
+Задача \thesection.\arabic{nc}. #2%
+\\
+\ifbool{answers}{Ответ. #1}{} - если переменная true, \\ то показать ответ
+}
+\z[6]{Сколько будет $2+2$?}
+\end{verbatim}
+\newbool{answers}%созд. нов. бинарн. пер-ю(по умол. false)
+%\booltrue{answers}%присвоить ей true(например задачник с ответами,показать их)
+\renewcommand{\z}[2][]{%
+%
+\addtocounter{nc}{1}%увеличить счетч. на 1 
+Задача \thesection.\arabic{nc}. #2%
+\\
+\ifbool{answers}{Ответ. #1}{}%если пер-я true, то показ. отв.
+}
+\z[6]{Сколько будет $2+2$?}
+
+
+
+\subsection{Гиперссылки на внеш. документы}
+
+\verb|\url{http://google.com}| --
+\url{http://google.com} \\%1-й спос.
+\verb|Сайт \href{http://yandex.ru}{Yandex}| --
+Сайт \href{http://yandex.ru}{Yandex}%2-й спос.
+
+
+
+\section{Окончание документа}
+\subsection{Список таблиц и иллюстраций в конце статьи}
+
+\listoffigures%список картинок
+
+\listoftables%список таблиц
+
+
+
+\subsection{Библиография}
+
+\subsubsection{Простая библиография}
+
+Смотри первый источник : \cite{qwerty}
+а так же смотри второй источник : \cite{fama} \\
+
+Можно переопределить название списка литературы на другое : \\
+\verb|\renewcommand{\refname}{Список источников}| \\%по умолч. "Список литературы" (для article)
+\verb|\renewcommand{\bibname}{Литературные источники}|%по умолч. "Литература" (для book, report)
+
+Окружение, включающее в себя библиографию документа : \\
+\begin{verbatim}
+\begin{thebibliography}{9}
+\addcontentsline{toc}{section}{\refname}
+\bibitem{qwerty} Пупкин В.М, Труд об истории //Образование. -- №8 1998.
+ -- С,18.
+\bibitem{fama} Иванов И.И, Труд о фундаментальной физике //Наука и жизнь.
+ -- №2 1994. -- С. 23-38.
+\end{thebibliography}
+\end{verbatim}
+\verb|{9}| - примерное количество источников(однозначное или двузначное число) \\
+\verb|\addcontentsline{toc}{section}{\refname}| - добавить библиографию в содержание: \\
+\verb|{toc}|-куда(tableofcontents), \\ \verb|{section}|-уровень пункта библиографии в содержании, \\
+\verb|{\refname}|-заглавие списка(Список литературы) \\
+\begin{thebibliography}{9}
+\addcontentsline{toc}{section}{\refname}%добавить библиографию в содержание:{toc}-tableofcontents,{section}-уровень пункта библиографии в содержании,{\refname}-заглавие списка(Список литературы)
+\bibitem{qwerty} Пупкин В.М, Труд об истории //Образование. -- №8 1998. -- С,18.
+\bibitem{fama} Иванов И.И, Труд о фундаментальной физике //Наука и жизнь. -- №2 1994. -- С. 23-38.
+\end{thebibliography}
+
+
+
+%\subsubsection{Библиография - BIB\TeX\ или BIB\LaTeX}
+
+%\printbibliography%список источников
+
+%Смотри статью: \cite{fama1965behavior} 
+
+%Еще \cite{райзер1987физика}.
+
+%И еще \cite{Dufwenberg2013}.
+
+
+
+%\subsection{С О Д Е Р Ж А Н И Е}
+
+\tableofcontents%Cодержание(без библиографии)
+
+%(y1-y2)x+(x2-x1)y+(x1y2-x2y1)=0 вычисление ур-я ф-и по точкам
+
+\end{document} % конец документа

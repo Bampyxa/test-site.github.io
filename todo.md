@@ -28,8 +28,8 @@
 5. Открываем и добавляем в файл index.inc.pug данные о новой статье5.
 6. Заходим в терминале в корень сайта
 7. Запускаем команду:
-    * pug --pretty index.pug -o ../
-    * pug --pretty article(номер).pug -o html/article(номер).pug
+    * pug --pretty pug/index.pug -o ../
+    * pug --pretty pug/article(номер).pug -o html/
 ---
 Изменение стилей
 * Меняем стиль в файле style.styl
